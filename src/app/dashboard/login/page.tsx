@@ -17,7 +17,7 @@ import { Alert } from '@mui/material';
 import avatar from '../../../assets/images/gylogo.png';
 import Image from 'next/image';
 import {Button} from '@mymoid/ui-components'
-import useSWR from 'swr';
+import gif from "../../../assets/video/bg.gif";
 
 
 function Copyright(props: any) {
@@ -49,15 +49,15 @@ export default function SignIn() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     useLogin({ user: data.get('User') as string, password: data.get('password') as string })
       .then((response) => {
         if (response != null) {
-          const { username = '', email = '', token = '' } = response || {};
+          const {user:{ username = '', email = '', token = '' }} = response || {};
           Cookies.set('session', username! , { expires: 1 });
           Cookies.set('email', email!, { expires: 1 });
           Cookies.set('token', token! , { expires: 1 });
 
-          document.cookie = `token=${JSON.stringify(response.token!)}; path=/`;
 
           router.push('/dashboard/');
           setError(null);
@@ -68,12 +68,25 @@ export default function SignIn() {
   };
 
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <Container className='bg-zinc-900 rounded-lg mt-4' component="main" maxWidth="xs">
+    <Box sx={{width:"100%", height:"100%", display: "flex", flexDirection: "column", justifyContent:"center"}}>
+      <ThemeProvider theme={defaultTheme}>
+       <Box sx={{position: "absolute", width: "100%", height: "100%", zIndex: -3}}>
+       <Image
+          src={gif}
+          alt="background"
+          layout="fill"
+          objectFit="cover"
+          className="blur pr-40	"
+        />
+        </Box>
+      <Container sx={{
+        borderRadius: "10px",
+        border: "1px solid rgba(255, 255, 255, 0.8)",
+      }} className='rounded-lg mt-4 bg-zinc-900 bg-opacity-60' component="main" maxWidth="xs">
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 4,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -123,7 +136,7 @@ export default function SignIn() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="/signup" className='text-green-500' variant="body2" sx={{ color: "#4caf50" }}>
+                <Link href="/dashboard/signup" className='text-green-500' variant="body2" sx={{ color: "#4caf50" }}>
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
@@ -133,5 +146,6 @@ export default function SignIn() {
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
+    </Box>
   );
 }

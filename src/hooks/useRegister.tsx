@@ -1,12 +1,15 @@
 import { SignUp } from "@/api/data";
 
-export default async function useRegister({username, email, password}: {username:string, email:string, password:string}){
+import { user } from "@/utils/types";
+
+export default async function useRegister({user, email, password}: user): Promise<string>{
     try{
-        const response = await SignUp({username, email, password})
-        return response
-    }catch(error){
+        console.log(user, email, password)
+        const response = await SignUp({user, email, password})
+        return response.toString()
+    }catch(error:any){
         console.error(error)
-        return false;
+        return error.toString();
     }
 
 }

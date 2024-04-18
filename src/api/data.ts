@@ -1,9 +1,11 @@
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
 import { session } from '@/utils/types';
+import { user } from '@/utils/types';
 
 
-export async function login({ user, password }: { user: string, password: string }): Promise<session | null> {
+
+export async function login({ user, password }: user): Promise<session | null> {
     try {
         const response = await fetch(`https://gy-accounts.onrender.com/login`, {
             method: 'POST',
@@ -16,7 +18,6 @@ export async function login({ user, password }: { user: string, password: string
         if (response.ok) {
            if(await response.text() === 'true'){
                 const session:session = await getSession({ user, password })
-                
                 return session;
 
            }else{
@@ -32,7 +33,7 @@ export async function login({ user, password }: { user: string, password: string
     }
 }
 
-export async function getSession({ user, password }: { user: string, password: string }): Promise<any> {
+export async function getSession({ user, password }: user): Promise<any> {
     try {
         const response = await fetch(`https://gy-accounts.onrender.com/session`, {
             method: 'POST',
@@ -51,23 +52,49 @@ export async function getSession({ user, password }: { user: string, password: s
 
 
 
-export async function SignUp({ username, email, password }: { username: string, email: string, password: string }): Promise<boolean | string> {
+export async function SignUp({ user, email, password }: user): Promise<string> {
     try {
+        console.log
         const response = await fetch(`https://gy-accounts.onrender.com/signup`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ username, email, password })
+            body: JSON.stringify({ user, email, password })
         })
 
         const data = await response.text()
+        if (data === '0') {
+            sendEmail(email!, user!)
+        }
         return data
     }
-    catch (error) {
+    catch (error:any) {
         console.error(error)
-        return false;
+        return error.toString();
     }
 }
 
-export default { login, SignUp }
+async function sendEmail(email:string, username:string) {
+    const formData = new FormData();
+    formData.append('email', email);
+    formData.append('username', username);
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'post',
+                body: JSON.stringify({ email, username }),
+            });
+
+
+            if (!response.ok) {
+                console.log("falling over")
+                throw new Error(`response status: ${response.status}`);
+            }
+            const responseData = await response.json();
+            console.log(responseData['message'])
+    
+        } catch (err) {
+            console.error(err);
+        }
+    };

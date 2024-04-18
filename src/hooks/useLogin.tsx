@@ -1,6 +1,6 @@
-import { session } from '@/utils/types';
+import { session, user } from '@/utils/types';
 import {login} from '../api/data'
-async function useLogin({ user, password }: { user: string, password: string }): Promise<session | null> {
+async function useLogin({ user, password }: user): Promise<session | null> {
     try{
         const response = await login({user, password})
         return response

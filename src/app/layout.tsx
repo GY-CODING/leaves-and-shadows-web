@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Image from "next/image";
-import logo from "../assets/images/logo.png";
+import logo from "../assets/images/leaves_and_shadows.png";
 import Link from "next/link";
 import Cookies from 'js-cookie';
 import { cinzel } from "@/utils/fonts";
@@ -20,8 +20,11 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className="w-screen h-screen bg-zinc-950 flex flex-col items-center">
-
+      <head>
+      <link rel="icon" href="/leaves_and_shadows.ico" />
+      </head>
+      <body className="w-screen h-screen bg-zinc-950 flex flex-col items-center overflow-hidden">
+    
         {children}
         </body>
     </html>
