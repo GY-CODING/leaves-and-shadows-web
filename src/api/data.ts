@@ -1,100 +1,86 @@
-import Cookies from 'js-cookie';
-import { useRouter } from 'next/navigation';
-import { session } from '@/utils/types';
-import { user } from '@/utils/types';
+import { type session, type user } from '@/utils/types'
 
+export async function login ({ user, password }: user): Promise<session | null> {
+  try {
+    const response = await fetch('https://gy-accounts.onrender.com/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ user, password })
+    })
 
-
-export async function login({ user, password }: user): Promise<session | null> {
-    try {
-        const response = await fetch(`https://gy-accounts.onrender.com/login`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ user, password })
-        })
-
-        if (response.ok) {
-           if(await response.text() === 'true'){
-                const session:session = await getSession({ user, password })
-                return session;
-
-           }else{
-                return null;
-           }
-        } else {
-            return null;
-        }
-
-    } catch (error) {
-        console.error(error)
-        return null;
+    if (response.ok) {
+      if (await response.text() === 'true') {
+        const session: session = await getSession({ user, password })
+        return session
+      } else {
+        return null
+      }
+    } else {
+      return null
     }
+  } catch (error) {
+    console.error(error)
+    return null
+  }
 }
 
-export async function getSession({ user, password }: user): Promise<any> {
-    try {
-        const response = await fetch(`https://gy-accounts.onrender.com/session`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ user, password })
-        })
-        return await response.json()
-    }
-    catch (error) {
-        console.error(error)
-        return false;
-    }
+export async function getSession ({ user, password }: user): Promise<any> {
+  try {
+    const response = await fetch('https://gy-accounts.onrender.com/session', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ user, password })
+    })
+    return await response.json()
+  } catch (error) {
+    console.error(error)
+    return false
+  }
 }
 
+export async function SignUp ({ user, email, password }: user): Promise<string> {
+  try {
+    const response = await fetch('https://gy-accounts.onrender.com/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ user, email, password })
+    })
 
-
-export async function SignUp({ user, email, password }: user): Promise<string> {
-    try {
-        console.log
-        const response = await fetch(`https://gy-accounts.onrender.com/signup`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ user, email, password })
-        })
-
-        const data = await response.text()
-        if (data === '0') {
-            sendEmail(email!, user!)
-        }
-        return data
+    const data = await response.text()
+    if (data === '0' && (email != null) && (user != null)) {
+      await sendEmail(email, user)
     }
-    catch (error:any) {
-        console.error(error)
-        return error.toString();
-    }
+    return data
+  } catch (error: any) {
+    console.error(error)
+    return error.toString()
+  }
 }
 
-async function sendEmail(email:string, username:string) {
-    const formData = new FormData();
-    formData.append('email', email);
-    formData.append('username', username);
+async function sendEmail (email: string, username: string): Promise<void> {
+  const formData = new FormData()
+  formData.append('email', email)
+  formData.append('username', username)
 
-        try {
-            const response = await fetch('/api/contact', {
-                method: 'post',
-                body: JSON.stringify({ email, username }),
-            });
+  try {
+    const response = await fetch('/api/contact', {
+      method: 'post',
+      body: JSON.stringify({ email, username })
+    })
 
-
-            if (!response.ok) {
-                console.log("falling over")
-                throw new Error(`response status: ${response.status}`);
-            }
-            const responseData = await response.json();
-            console.log(responseData['message'])
-    
-        } catch (err) {
-            console.error(err);
-        }
-    };
+    if (!response.ok) {
+      console.log('falling over')
+      throw new Error(`response status: ${response.status}`)
+    }
+    const responseData = await response.json()
+    console.log(responseData.message)
+  } catch (err) {
+    console.error(err)
+  }
+};

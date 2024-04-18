@@ -1,47 +1,45 @@
-import { NextResponse, NextRequest } from 'next/server'
-const nodemailer = require('nodemailer');
-const { google } = require('googleapis');
+import { NextResponse } from 'next/server'
+import nodemailer from 'nodemailer'
+// const { google } = require('googleapis')
 
+export async function POST (request: Request): Promise<any> {
+  const requestBody = await request.json()
+  const email = requestBody.email
+  const username = requestBody.username
 
-export async function POST(request) {
-    const requestBody = await request.json();
-    const email = requestBody.email;
-    const username = requestBody.username;
+  console.log(email, username)
 
-    console.log(email, username)
+  console.log('Datos recibidos en la solicitud POST:', { email, username })
+  const CLIENT_ID = '42576277457-bcqddg56kc24fkmnidcciusloe7kak0e.apps.googleusercontent.com'
+  const CLIENT_SECRET = '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'
+  const REFRESH_TOKEN = '1//04Dw2WsEImwnuCgYIARAAGAQSNwF-L9IrNsTbo4t6eduB9uHkGTWCd9XzwTlqdLYLF7PjzociRfl12q8-bGU636_yz-gPk4kdvlI'
+  //   const REDIRECT_URI = 'https://developers.google.com/oauthplayground'
+  const MY_EMAIL = 'gycoding05@gmail.com'
 
-    console.log("Datos recibidos en la solicitud POST:", { email, username });
-    const CLIENT_ID = "42576277457-bcqddg56kc24fkmnidcciusloe7kak0e.apps.googleusercontent.com"
-    const CLIENT_SECRET = "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"
-    const REFRESH_TOKEN = '1//04Dw2WsEImwnuCgYIARAAGAQSNwF-L9IrNsTbo4t6eduB9uHkGTWCd9XzwTlqdLYLF7PjzociRfl12q8-bGU636_yz-gPk4kdvlI'
-    const REDIRECT_URI = "https://developers.google.com/oauthplayground"
-    const MY_EMAIL = "gycoding05@gmail.com"
+  //   const oAuth2Client = new google.auth.OAuth2(
+  //     CLIENT_ID,
+  //     CLIENT_SECRET,
+  //     REDIRECT_URI
+  //   )
 
-    const oAuth2Client = new google.auth.OAuth2(
-        CLIENT_ID,
-        CLIENT_SECRET,
-        REDIRECT_URI
-    );
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      type: 'OAuth2',
+      user: MY_EMAIL,
+      clientId: CLIENT_ID,
+      clientSecret: CLIENT_SECRET,
+      refreshToken: REFRESH_TOKEN
+    }
+  })
+  console.log(transporter)
 
-    const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            type: 'OAuth2',
-            user: MY_EMAIL,
-            clientId: CLIENT_ID,
-            clientSecret: CLIENT_SECRET,
-            refreshToken: REFRESH_TOKEN,
-        },
-    });
-    console.log(transporter)
-
-    try {
-
-        const mail = await transporter.sendMail({
-            from: "GYCoding",
-            to: email,
-            subject: `Website activity from ${email}`,
-            html: `
+  try {
+    await transporter.sendMail({
+      from: 'GYCoding',
+      to: email,
+      subject: `Website activity from ${email}`,
+      html: `
             <!DOCTYPE html>
 <html lang="en">
 
@@ -120,13 +118,12 @@ export async function POST(request) {
 </body>
 
 </html>
-            `,
-        })
+            `
+    })
 
-        return NextResponse.json({ message: "Success: email was sent" })
-
-    } catch (error) {
-        console.error(error);
-        return NextResponse.status(500).json({ message: "COULD NOT SEND MESSAGE" });
-    }
+    return NextResponse.json({ message: 'Success: email was sent' }, { status: 200 })
+  } catch (error) {
+    console.error(error)
+    return NextResponse.json({ message: 'Error: email was not sent' }, { status: 500 })
+  }
 }

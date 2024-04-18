@@ -1,27 +1,23 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 'use client'
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { cinzel } from '@/utils/fonts';
-import useRegister from '@/hooks/useRegister';
-import Image from 'next/image';
-import background from "../../../assets/images/background.png";
-import avatar from '../../../assets/images/gylogo.png';
-import { register } from 'module';
-import { useRouter } from 'next/navigation';
-import { Alert } from '@mui/material';
-import { useState } from 'react';
-import gif from "../../../assets/video/bg.gif";
+import React, { useState } from 'react'
+import Button from '@mui/material/Button'
+import CssBaseline from '@mui/material/CssBaseline'
+import TextField from '@mui/material/TextField'
+import Link from '@mui/material/Link'
+import Grid from '@mui/material/Grid'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import Container from '@mui/material/Container'
+import { createTheme, ThemeProvider } from '@mui/material/styles'
+import { cinzel } from '@/utils/fonts'
+import useRegister from '@/hooks/useRegister'
+import Image from 'next/image'
+import avatar from '../../../assets/images/gylogo.png'
+import { useRouter } from 'next/navigation'
+import { Alert } from '@mui/material'
+import gif from '../../../assets/video/bg.gif'
 
-function Copyright(props: any) {
+function Copyright (props: any): JSX.Element {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
@@ -31,48 +27,51 @@ function Copyright(props: any) {
       {new Date().getFullYear()}
       {'.'}
     </Typography>
-  );
+  )
 }
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme({
   palette: {
-    mode: 'dark',
-  },
-});
+    mode: 'dark'
+  }
+})
 
-export default function SignUp() {
-  const router = useRouter();
-  const [error, setError] = useState<string>("");
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    useRegister({user:data.get('user') as string, email: data.get('email') as string, password: data.get('password') as string})
-    .then((response) => {
-      if(response == '0'){
-        router.push('/dashboard/login')
-      }else{
-        setError("Invalid User or Password")
-
-      }
-    })
-  };
+export default function SignUp (): JSX.Element {
+  const router = useRouter()
+  const [error, setError] = useState<string>('')
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+    event.preventDefault()
+    const data = new FormData(event.currentTarget)
+    try {
+      void useRegister({ user: data.get('user') as string, email: data.get('email') as string, password: data.get('password') as string })
+        .then((response) => {
+          if (response === '0') {
+            router.push('/dashboard/login')
+          } else {
+            setError('Invalid User or Password')
+          }
+        })
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Box sx={{width:"100%", height:"100%", display: "flex", flexDirection: "column", justifyContent:"center"}}>
-      <Box sx={{ position: "absolute", width: "100%", height: "100%", zIndex: -3 }}>
+      <Box sx={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+      <Box sx={{ position: 'absolute', width: '100%', height: '100%', zIndex: -3 }}>
       <Image
           src={gif}
           alt="background"
           layout="fill"
           objectFit="cover"
-          className="blur pr-40	"
+          className="blur pr-40"
         />
       </Box>
       <Container sx={{
-        borderRadius: "10px",
-        border: "1px solid rgba(255, 255, 255, 0.8)",
+        borderRadius: '10px',
+        border: '1px solid rgba(255, 255, 255, 0.8)'
       }} className='rounded-lg mt-4 bg-zinc-900 bg-opacity-60' component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -80,7 +79,7 @@ export default function SignUp() {
             marginTop: 4,
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center',
+            alignItems: 'center'
           }}
         >
           <Image className='m-2' src={avatar} alt={''} width={60} height={10} />
@@ -124,16 +123,16 @@ export default function SignUp() {
             >
               Sign Up
             </Button>
-            {error && <Alert severity="error">{error}</Alert>}
+            {(error.length > 0) && <Alert severity="error">{error}</Alert>}
             <Grid container>
               <Grid item xs>
-                <Link href="#" className='text-green-500' variant="body2" sx={{ color: "#4caf50" }}>
+                <Link href="#" className='text-green-500' variant="body2" sx={{ color: '#4caf50' }}>
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="/dashboard/login" className='text-green-500' variant="body2" sx={{ color: "#4caf50" }}>
-                  {"You have an account? Login"}
+                <Link href="/dashboard/login" className='text-green-500' variant="body2" sx={{ color: '#4caf50' }}>
+                  {'You have an account? Login'}
                 </Link>
               </Grid>
             </Grid>
@@ -143,5 +142,5 @@ export default function SignUp() {
       </Container>
       </Box>
     </ThemeProvider>
-  );
+  )
 }
