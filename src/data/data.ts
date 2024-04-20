@@ -64,13 +64,9 @@ export async function SignUp ({ user, email, password }: user): Promise<string> 
 }
 
 async function sendEmail (email: string, username: string): Promise<void> {
-  const formData = new FormData()
-  formData.append('email', email)
-  formData.append('username', username)
-
   try {
     const response = await fetch('/api/contact', {
-      method: 'post',
+      method: 'POST',
       body: JSON.stringify({ email, username })
     })
 
