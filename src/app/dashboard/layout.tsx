@@ -1,79 +1,51 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client'
-import { cinzel } from "@/utils/fonts";
-import Link from "next/link";
-import Cookies from 'js-cookie';
-import Image from 'next/image';
-import logo from '../../assets/images/logo.png';
-import { useEffect, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-import useLogout from '@/hooks/useLogout';
-import { getSession } from "@/utils/types";
-import { session } from "@/utils/types";
+import React from 'react'
+import { cinzel } from '@/utils/fonts'
+import Link from 'next/link'
+import Image from 'next/image'
+import logo from '../../assets/images/leaves_and_shadows.png'
+import { useRouter, usePathname } from 'next/navigation'
+import TemporaryDrawer from '@/components/Drawer'
+import { useSession, signOut } from 'next-auth/react'
 
-export default function Layout({ children, }: Readonly<{ children: React.ReactNode; }>) {
-    const params = useSearchParams();
-    const router = useRouter();
-    const [session, setSession] = useState<session | null>(getSession());
-    const [sessionBoolean, setSessionBoolean] = useState<boolean>(false);
+export default function Layout ({ children }: Readonly<{ children: React.ReactNode }>): JSX.Element {
+  const router = useRouter()
+  const pathname = usePathname()
+  const { data: session } = useSession()
 
-
-    useEffect(() => {
-        if (getSession().username != null) {
-            setSession(getSession());
-            setSessionBoolean(true);
-        }
-        else if(getSession().username == null){
-            setSessionBoolean(false)
-            setSession(null)
-        }else{
-            setSessionBoolean(false)
-            setSession(null)
-            logout()
-        }
-    }, [params]);
-
-    function logout() {
-        setSession(null);
-        setSessionBoolean(false);
-        Cookies.remove('session');
-        Cookies.remove('email');
-        Cookies.remove('token');
-        router.refresh();    
+  function pushToDashboard (): void {
+    if (pathname !== '/dashboard') {
+      router.push('/dashboard/')
+      console.log('pushed')
     }
-    
+  }
 
-    return (
+  return (
         <>
-            <header className={`w-screen h-24 bg-zinc-900 flex flex-row self-start justify-self-start`}>
+            <header className={'w-screen h-24 bg-zinc-900 flex flex-row self-start justify-self-star bg-opacity-20 backdrop:blur-'}>
                 <ul className="w-1/2 h-full flex flex-row items-center justify-start gap-6 pl-4">
-                    <Image src={logo} className="w-20 h-20" alt="logo" width={100} height={100} />
-                    {/* <li className={`${cinzel.className} font-bold text-xl bg-clip-text bg-gradient-to-r from-teal-500 to-green-500`}>Leaves & Shadows</li> */}
+                    <Image onClick={pushToDashboard} src={logo} className="w-16 h-16 hover:cursor-pointer" alt="logo" width={100} height={100} />
                     <div className="w-auto text-center">
-                        <p className={`${cinzel.className} font-bold text-xl text-green-50`}>Leaves & Shadows</p>
-                        <p className={`${cinzel.className} font-bold text-m text-green-50`}>Fall of the Gods</p>
+                        <Link className={`${cinzel.className} font-bold text-xl text-green-50`} href={'/dashboard/'} onClick={pushToDashboard}>Leaves & Shadows</Link>
+                        {/* <p className={`${cinzel.className} font-bold text-m text-green-50`}>Fall of the Gods</p> */}
 
                     </div>
                 </ul>
                 <div className="w-1/2 h-full flex flex-row items-center justify-end pr-4 gap-4">
                     {
-                        sessionBoolean
-                            ?
-                            <>
-                                <button className="w-40 h-12 rounded bg-zinc-950 flex text-white ">
-                                    <Link href="/dashboard/profile" className={`${cinzel.className} text-green-40 0bg-zinc-950 hover:bg-green-500 hover:text-white w-full h-full rounded text-center items-center justify-center flex transition duration-500 ease-in-out`}>{session ? session.username : "Login"}</Link>
-                                </button>
-                                <button onClick={logout} className={`w-40 h-12 rounded bg-zinc-950 flex text-white text-center justify-center items-center ${cinzel.className} hover:bg-green-500 transition duration-500 ease-in-out`}>
-                                    Logout
-                                </button>
+                        (session != null)
+                          ? <>
+                                <TemporaryDrawer logout={signOut} />
                             </>
-                            : <button className="w-40 h-12 rounded bg-zinc-950 flex text-white">
-                                <Link href="/dashboard/login" className={`${cinzel.className} text-green-40 0bg-zinc-950 hover:bg-green-500 hover:text-white w-full h-full rounded text-center items-center justify-center flex transition duration-500 ease-in-out`}>{"Login"}</Link>
-
+                          : <button className="w-40 h-12 rounded bg-zinc-950 flex text-white">
+                                <Link href="/dashboard/login" className={`${cinzel.className} text-green-40 0bg-zinc-950 hover:bg-green-500 hover:text-white w-full h-full rounded text-center items-center justify-center flex transition duration-500 ease-in-out`}>{'Login'}</Link>
                             </button>
                     }
                 </div>
             </header>
             {children}
         </>
-    )
+  )
 }
