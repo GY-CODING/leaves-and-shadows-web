@@ -14,10 +14,15 @@ datasource db {
 }
 
 model User {
-  id       Int     @id @default(autoincrement())
-  email    String? @unique @db.VarChar(255)
-  password String? @db.VarChar(255)
-  salt     String? @db.VarChar(255)
-  token    String? @default(uuid())
-  username String? @unique @db.VarChar(255)
+  id    String   @unique @id
+  email String   @unique
+  logros Logros[]
+}
+
+model Logros {
+  id          Int    @id @default(autoincrement())
+  nombre      String
+  descripcion String
+  id_user     String
+  user        User   @relation(fields: [id_user], references: [id])
 }

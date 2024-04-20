@@ -14,17 +14,18 @@ import Container from '@mui/material/Container'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { cinzel } from '@/utils/fonts'
 import { useRouter } from 'next/navigation'
-import { Alert, IconButton } from '@mui/material'
+import { Alert, Avatar, IconButton } from '@mui/material'
 import avatar from '../../../assets/images/gylogo.png'
 import Image from 'next/image'
 import { Button } from '@mymoid/ui-components'
 import gif from '../../../assets/video/bg.gif'
 import { signIn } from 'next-auth/react'
-import GoogleIcon from '@mui/icons-material/Google'
+import { FcGoogle } from 'react-icons/fc'
+const GY_ICON = 'https://lh3.googleusercontent.com/a/ACg8ocJrdg1JZzP7rkgxnBCnr9xI-jeSnmoH-dZ82-SBD_3dbK4m7kI=s96-c'
 
 function Copyright (props: any): JSX.Element {
   return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+    <Typography variant="body2" color="black" align="center" sx={{ mt: 0, mb: 4 }}>
       {'Copyright © '}
       <Link color="inherit" href="https://gycoding.com">
         GYCoding
@@ -91,49 +92,30 @@ export default function SignIn (): JSX.Element {
         </Box>
         <Container sx={{
           borderRadius: '10px',
-          border: '1px solid rgba(255, 255, 255, 0.8)'
-        }} className='rounded-lg mt-4 bg-zinc-900 bg-opacity-60' component="main" maxWidth="xs">
+          border: '1px solid rgba(255, 255, 255, 0.1)'
+        }} className='rounded-xl mt-4 h-3/5 flex flex-col justify-between bg-white bg-opacity-100' component="main" maxWidth="xs">
           <CssBaseline />
           <Box
             sx={{
               marginTop: 4,
               display: 'flex',
               flexDirection: 'column',
-              alignItems: 'center'
+              alignItems: 'center',
+              gap: '1rem'
             }}
           >
-            <Image className='m-2' src={avatar} alt={''} width={60} height={10} />
-            <Typography component="h1" variant="h5" className={`${cinzel.className}`} sx={{ fontFamily: 'cinzel' }}>
-              Login
+            <Image className='m-2' src={avatar} alt={''} width={70} height={70} />
+            <Typography variant="h5" sx={{ fontFamily: '', letterSpacing: '1px', fontWeight: '400', color: 'black' }}>
+              WELCOME TO
             </Typography>
+            <Typography variant="h5" sx={{ letterSpacing: '2px', fontWeight: 'bold', color: '#6b21a8', textAlign: 'center', marginTop: '-1rem' }}>GYCODING</Typography>
+
             <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-              <TextField
-                margin="normal"
-                fullWidth
-                id="User"
-                label="User"
-                name="User"
-                autoComplete="User"
-                autoFocus
-              />
-              <TextField
-                margin="normal"
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-              />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2, backgroundColor: '#4caf50', color: 'white', '&:hover': { backgroundColor: '#43a047' } }}
-              >
-                Login
-              </Button>
-              <Button onClick={handleClickGoogle} startIcon={<GoogleIcon sx={{ color: 'black' }} />} sx={{ width: '100%', bgcolor: 'white', color: 'black', '&:hover': { bgcolor: 'white' }, display: 'flex', alignItems: 'center', justifyContent: 'space-eveny' }}>LogIn with Google</Button>
+              <Box sx={{ display: 'flex', flexDirection: 'column', gap: '.5rem' }}>
+              <Button onClick={handleClickGoogle} startIcon={<FcGoogle className="w-7"/>} sx={{ width: '100%', bgcolor: '#e5e7eb', color: 'black', '&:hover': { bgcolor: '#18181b', color: 'white' }, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>Continue with Google</Button>
+              <Button disabled startIcon={<Avatar sx={{ width: 24, height: 24 }} src={GY_ICON}/>} sx={{ width: '100%', bgcolor: '#white', color: 'black', '&:hover': { bgcolor: '#E2E2E2', color: 'black' }, display: 'flex', alignItems: 'center', justifyContent: 'space-between', ':disabled': { color: 'black', opacity: '30%' } }}>SignUp with GYCoding</Button>
+
+              </Box>
               <br />
               {error == null
                 ? ''
@@ -141,21 +123,9 @@ export default function SignIn (): JSX.Element {
                   {error}
                 </Alert>
               }
-              <Grid container>
-                <Grid item xs>
-                  <Link href="#" className='text-green-500' variant="body2" sx={{ color: '#4caf50' }}>
-                    Forgot password?
-                  </Link>
-                </Grid>
-                <Grid item>
-                  <Link href="/dashboard/signup" className='text-green-500' variant="body2" sx={{ color: '#4caf50' }}>
-                    {"Don't have an account? Sign Up"}
-                  </Link>
-                </Grid>
-              </Grid>
             </Box>
           </Box>
-          <Copyright sx={{ mt: 8, mb: 4 }} />
+          <Copyright />
         </Container>
       </ThemeProvider>
     </Box>

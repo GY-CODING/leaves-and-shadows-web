@@ -1,10 +1,8 @@
 import Box from '@mui/material/Box'
 import Drawer from '@mui/material/Drawer'
 import { cinzel } from '@/utils/fonts'
-import { Avatar, Button, FormControl, IconButton, TextField, ThemeProvider, Tooltip, Typography, createTheme } from '@mui/material'
-import React, { useState } from 'react'
-import { ContentCopyIcon, InputAdornment } from '@mymoid/ui-components'
-import { Visibility, VisibilityOff } from '@mui/icons-material'
+import { Avatar, Button, FormControl, TextField, ThemeProvider, Typography, createTheme } from '@mui/material'
+import React from 'react'
 import { useSession } from 'next-auth/react'
 
 interface TemporaryDrawerProps {
@@ -19,21 +17,10 @@ const darkTheme = createTheme({
 export default function TemporaryDrawer ({ logout }: TemporaryDrawerProps): JSX.Element {
   const [open, setOpen] = React.useState(false)
   const { data: session } = useSession()
-  const [showToken, setShowToken] = useState<boolean>(false)
 
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen)
   }
-  const handleClickShowPassword = (event: React.MouseEvent<HTMLButtonElement>): void => {
-    event.stopPropagation()
-    setShowToken(!showToken)
-  }
-
-  const handleSetClipboardId = (event: React.MouseEvent<HTMLButtonElement>): void => {
-    event.stopPropagation()
-    void navigator.clipboard.writeText(session?.user?.name ?? 'No session')
-  }
-
   const DrawerList = (
     <Box sx={{
       width: 450,
@@ -59,6 +46,10 @@ export default function TemporaryDrawer ({ logout }: TemporaryDrawerProps): JSX.
         gap: 2
       }}>
         <ThemeProvider theme={darkTheme}>
+          <Avatar
+          alt={(session?.user?.name) ?? ''}
+          src={(session?.user?.image) ?? ''}
+          sx={{ width: '100px', height: '100px' }} />
           <Typography sx={{ color: 'white' }} variant='h4' className={cinzel.className}>User Details</Typography>
           <TextField
             id="Username"
@@ -86,44 +77,6 @@ export default function TemporaryDrawer ({ logout }: TemporaryDrawerProps): JSX.
             defaultValue={(session?.user?.email) ?? 'No session'}
             value={(session?.user?.email) ?? 'No session'}
             type='email'
-          />
-          <TextField
-            id="id_user"
-            label="id_user"
-            disabled
-            fullWidth
-            variant="outlined"
-            sx={{ width: '90%' }}
-            defaultValue={(session?.user?.id) ?? ''}
-            value={(session?.user?.id) ?? ''}
-            type={showToken ? 'text' : 'password'}
-            InputLabelProps={{
-              shrink: true
-            }}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <Tooltip title="Copy">
-                    <IconButton
-                      size="small"
-                      onClick={(event) => { handleSetClipboardId(event) }}
-                      edge="end">
-                      <ContentCopyIcon fontSize='small' />
-                    </IconButton>
-                  </Tooltip>
-                  <Tooltip title={showToken ? 'hide token' : 'show token'}>
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      edge="end"
-                    >
-                      {showToken ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  </Tooltip>
-
-                </InputAdornment>
-              )
-            }}
           />
         </ThemeProvider>
       </FormControl>
