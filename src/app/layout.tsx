@@ -3,8 +3,8 @@ import type { Metadata } from 'next'
 import React from 'react'
 import './globals.css'
 import { getServerSession } from 'next-auth'
-import { authOptions } from './api/auth/[...nextauth]/route'
 import Provider from '@/app/context/client-provider'
+import { authConfig } from '../../lib/auth'
 
 export const metadata: Metadata = {
   title: 'Leaves & Shadows',
@@ -12,7 +12,8 @@ export const metadata: Metadata = {
 }
 
 export default async function RootLayout ({ children }: Readonly<{ children: React.ReactNode }>) {
-  const session = await getServerSession(authOptions)
+  const session = await getServerSession(authConfig)
+  // console.log(session)
 
   return (
     <html lang="en">
