@@ -4,7 +4,7 @@ import React from 'react'
 import './globals.css'
 import { getServerSession } from 'next-auth'
 import Provider from '@/app/context/client-provider'
-import { authConfig } from '../../lib/auth'
+import { authConfig } from '@/lib/auth'
 
 export const metadata: Metadata = {
   title: 'Leaves & Shadows',
