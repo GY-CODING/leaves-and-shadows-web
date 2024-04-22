@@ -23,7 +23,7 @@ export default function Layout ({ children }: Readonly<{ children: React.ReactNo
   }
   async function handleSignOut (): Promise<void> {
     await signOut()
-    router.push('/dashboard/')
+    router.push('/dashboard/login')
   }
 
   return (
