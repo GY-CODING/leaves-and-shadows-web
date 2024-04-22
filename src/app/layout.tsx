@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import type { Metadata } from 'next'
 import React from 'react'
 import './globals.css'
 import { getServerSession } from 'next-auth'
 import Provider from '@/app/context/client-provider'
-import { authConfig } from '@/lib/auth'
+import { authConfig } from '@/lib/route'
 
 export const metadata: Metadata = {
   title: 'Leaves & Shadows',
