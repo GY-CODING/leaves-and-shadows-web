@@ -17,7 +17,6 @@ const darkTheme = createTheme({
 export default function TemporaryDrawer ({ logout }: TemporaryDrawerProps): JSX.Element {
   const [open, setOpen] = React.useState(false)
   const { data: session } = useSession()
-  console.log(session?.user?.image)
 
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen)

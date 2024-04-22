@@ -71,7 +71,6 @@ async function sendEmail (email: string, username: string): Promise<void> {
     })
 
     if (!response.ok) {
-      console.log('falling over')
       throw new Error(`response status: ${response.status}`)
     }
     const responseData = await response.json()

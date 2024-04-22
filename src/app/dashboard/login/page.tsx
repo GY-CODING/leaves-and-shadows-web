@@ -68,16 +68,13 @@ export default function SignIn (): JSX.Element {
     if (res?.error) {
       setError('Invalid User or Password')
     } else {
-      console.log('enviando al /dashboard')
       router.push('/dashboard/')
     }
   }
 
   const handleClickGoogle = async (): Promise<void> => {
     await signIn('google').then((res) => {
-      if (res!.ok) {
-        router.push('/dashboard/')
-      }
+      router.push('/dashboard/')
     })
   }
 
