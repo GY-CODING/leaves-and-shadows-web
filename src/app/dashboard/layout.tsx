@@ -18,7 +18,6 @@ export default function Layout ({ children }: Readonly<{ children: React.ReactNo
   function pushToDashboard (): void {
     if (pathname !== '/dashboard') {
       router.push('/dashboard/')
-      console.log('pushed')
     }
   }
   async function handleSignOut (): Promise<void> {
