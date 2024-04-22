@@ -21,6 +21,10 @@ export default function Layout ({ children }: Readonly<{ children: React.ReactNo
       console.log('pushed')
     }
   }
+  async function handleSignOut (): Promise<void> {
+    await signOut()
+    router.push('/dashboard/')
+  }
 
   return (
         <>
@@ -37,7 +41,7 @@ export default function Layout ({ children }: Readonly<{ children: React.ReactNo
                     {
                         (session != null)
                           ? <>
-                                <TemporaryDrawer logout={signOut} />
+                                <TemporaryDrawer logout={handleSignOut} />
                             </>
                           : <button className="w-40 h-12 rounded bg-zinc-950 flex text-white">
                                 <Link href="/dashboard/login" className={`${cinzel.className} text-green-40 0bg-zinc-950 hover:bg-green-500 hover:text-white w-full h-full rounded text-center items-center justify-center flex transition duration-500 ease-in-out`}>{'Login'}</Link>
