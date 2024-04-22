@@ -1,29 +1,20 @@
-import { type NextAuthOptions } from 'next-auth'
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+import type { NextAuthOptions } from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
 
-export const authConfig: NextAuthOptions = {
-  providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID ?? '',
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? ''
-    })
-  ],
-  callbacks: {
-    async signIn (user, account, profile) {
-      const { email, id } = user
-      return true
-    },
-    async session (session, token) {
-      if (session.user) {
-        session.user.id = token.sub as string
-      }
-      return session
-    }
-  },
-  session: {
-    strategy: 'jwt'
-  },
+export const authOptions: NextAuthOptions = {
   pages: {
     signIn: '/dashboard/login'
-  }
+  },
+  session: {
+    strategy: 'jwt' // Use JSON Web Tokens (JWT) for session management
+  },
+
+  providers: [
+    GoogleProvider({
+      // Configure Google authentication provider with environment variables
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!
+    })
+  ]
 }
