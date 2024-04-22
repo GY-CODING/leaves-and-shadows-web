@@ -4,7 +4,8 @@ import GoogleProvider from 'next-auth/providers/google'
 
 export const authConfig: NextAuthOptions = {
   pages: {
-    signIn: '/dashboard/login'
+    signIn: '/dashboard/login',
+    signOut: '/dashboard/'
   },
   session: {
     strategy: 'jwt' // Use JSON Web Tokens (JWT) for session management
