@@ -18,6 +18,7 @@ export const authConfig: NextAuthOptions = {
         session.user.id = user.id
         return await Promise.resolve(session)
       }
+      return await Promise.resolve(session)
     }
   },
   providers: [
