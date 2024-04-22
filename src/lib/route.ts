@@ -3,9 +3,9 @@ import type { NextAuthOptions } from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
 
 export const authConfig: NextAuthOptions = {
-  pages: {
-    signIn: '/dashboard/login'
-  },
+//   pages: {
+//     signIn: '/dashboard/login'
+//   },
   session: {
     strategy: 'jwt' // Use JSON Web Tokens (JWT) for session management
   },
