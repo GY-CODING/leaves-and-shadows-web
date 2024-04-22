@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import CssBaseline from '@mui/material/CssBaseline'
 import TextField from '@mui/material/TextField'
 import Link from '@mui/material/Link'
@@ -19,7 +19,7 @@ import avatar from '../../../assets/images/gylogo.png'
 import Image from 'next/image'
 import { Button } from '@mymoid/ui-components'
 import gif from '../../../assets/video/bg.gif'
-import { signIn } from 'next-auth/react'
+import { signIn, useSession } from 'next-auth/react'
 import { FcGoogle } from 'react-icons/fc'
 const GY_ICON = 'https://lh3.googleusercontent.com/a/ACg8ocJrdg1JZzP7rkgxnBCnr9xI-jeSnmoH-dZ82-SBD_3dbK4m7kI=s96-c'
 
@@ -45,6 +45,8 @@ const defaultTheme = createTheme({
 export default function SignIn (): JSX.Element {
   const router = useRouter()
   const [error, setError] = useState<string | null>(null)
+  const { data: session, status } = useSession()
+
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<any> => {
@@ -71,6 +73,11 @@ export default function SignIn (): JSX.Element {
       router.push('/dashboard/')
     }
   }
+  useEffect(() => {
+    if (status === 'authenticated') {
+      router.push('/dashboard/')
+    }
+  }, [status])
 
   const handleClickGoogle = async (): Promise<void> => {
     await signIn('google').then((res) => {
@@ -112,8 +119,8 @@ export default function SignIn (): JSX.Element {
 
             <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: '.5rem' }}>
-              <Button onClick={handleClickGoogle} startIcon={<FcGoogle className="w-7"/>} sx={{ width: '100%', bgcolor: '#e5e7eb', color: 'black', '&:hover': { bgcolor: '#18181b', color: 'white' }, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>Continue with Google</Button>
-              <Button disabled startIcon={<Avatar sx={{ width: 24, height: 24 }} src={GY_ICON}/>} sx={{ width: '100%', bgcolor: '#white', color: 'black', '&:hover': { bgcolor: '#E2E2E2', color: 'black' }, display: 'flex', alignItems: 'center', justifyContent: 'space-between', ':disabled': { color: 'black', opacity: '30%' } }}>SignUp with GYCoding</Button>
+                <Button onClick={handleClickGoogle} startIcon={<FcGoogle className="w-7" />} sx={{ width: '100%', bgcolor: '#e5e7eb', color: 'black', '&:hover': { bgcolor: '#18181b', color: 'white' }, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>Continue with Google</Button>
+                <Button disabled startIcon={<Avatar sx={{ width: 24, height: 24 }} src={GY_ICON} />} sx={{ width: '100%', bgcolor: '#white', color: 'black', '&:hover': { bgcolor: '#E2E2E2', color: 'black' }, display: 'flex', alignItems: 'center', justifyContent: 'space-between', ':disabled': { color: 'black', opacity: '30%' } }}>SignUp with GYCoding</Button>
 
               </Box>
               <br />
