@@ -92,7 +92,7 @@ export default function SignIn (): JSX.Element {
         <Container sx={{
           borderRadius: '10px',
           border: '1px solid rgba(255, 255, 255, 0.1)'
-        }} className='rounded-xl mt-4 h-3/5 flex flex-col justify-between bg-white bg-opacity-100' component="main" maxWidth="xs">
+        }} className='rounded-xl sm:mt-4 sm:h-3/5 h-full flex flex-col justify-between bg-white bg-opacity-100' component="main" maxWidth="xs">
           <CssBaseline />
           <Box
             sx={{

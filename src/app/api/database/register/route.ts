@@ -7,7 +7,7 @@ import { Cipher } from '@/utils/cipher'
 export async function POST (request: Request): Promise<NextResponse> {
   const data = await request.json()
   const salt: Buffer = Cipher.generateSalt()
-
+  console.log(data.email, data.password, data.user)
   try {
     const userFound: Promise<boolean> = await db.user.findUnique({
       where: {
