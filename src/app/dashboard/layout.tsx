@@ -27,7 +27,7 @@ export default function Layout ({ children }: Readonly<{ children: React.ReactNo
   useEffect(() => {
     if (pathname === '/dashboard') {
       setLayout('Login')
-    } else if (pathname === '/dashboard/login') {
+    } else if (pathname === '/dashboard/login' || session != null) {
       setLayout('Dashboard')
     }
   }, [pathname])
