@@ -2,8 +2,9 @@
 import Box from '@mui/material/Box'
 import Drawer from '@mui/material/Drawer'
 import { cinzel } from '@/utils/fonts'
-import { Avatar, Button, FormControl, TextField, ThemeProvider, Typography, createTheme, useTheme } from '@mui/material'
+import { Avatar, Button, FormControl, Icon, TextField, ThemeProvider, Typography, createTheme, useTheme } from '@mui/material'
 import useMediaQuery from '@mui/material/useMediaQuery'
+import CloseIcon from '@mui/icons-material/Close'
 
 import React from 'react'
 // import { useMediaQuery } from 'React-responsive'
@@ -38,10 +39,14 @@ export default function TemporaryDrawer ({ logout }: TemporaryDrawerProps): JSX.
       justifyContent: 'space-around',
       backdropFilter: 'blur(10px)',
       gap: 2,
+
       '&.MuiBox-root': { backgroundColor: 'rgb(9 9 11)' }
     }}
-      role="presentation" onClick={toggleDrawer(false)}>
 
+      role="presentation">
+         <Button sx={{ color: 'white', width: '24px', position: 'absolute', top: '24px', right: '24px' }}>
+          <CloseIcon onClick={toggleDrawer(false)} />
+        </Button>
       <FormControl sx={{
         width: isMobileDevice ? '100vw' : '450px',
         height: '50%',
@@ -52,6 +57,7 @@ export default function TemporaryDrawer ({ logout }: TemporaryDrawerProps): JSX.
         backdropFilter: 'blur(10px)',
         gap: 2
       }}>
+
         <ThemeProvider theme={darkTheme}>
           <Avatar
           alt={(session?.user?.name) ?? ''}
@@ -100,6 +106,7 @@ export default function TemporaryDrawer ({ logout }: TemporaryDrawerProps): JSX.
     <>
       {/* <button onClick={toggleDrawer(true)} className={`${cinzel.className} w-40 h-12 bg-zinc-950 text-white hover:bg-green-500 hover:text-white rounded text-center items-center justify-center flex transition duration-500 ease-in-out"`}>{(session?.user?.name)}</button> */}
       <Button
+        className='pointer-events-auto'
         onClick={toggleDrawer(true)}
         sx={{
           fontFamily: cinzel.className,
@@ -107,6 +114,8 @@ export default function TemporaryDrawer ({ logout }: TemporaryDrawerProps): JSX.
           height: '3rem',
           backgroundColor: '#09090b',
           color: 'white',
+          pointerEvents: 'auto',
+          zIndex: 1,
           transitionDuration: '500ms',
           '&:hover': {
             backgroundColor: '#22c55e',
