@@ -18,7 +18,7 @@ const darkTheme = createTheme({
 export default function TemporaryDrawer ({ logout }: TemporaryDrawerProps): JSX.Element {
   const [open, setOpen] = React.useState(false)
   const { data: session } = useSession()
-  const isMobileDevice = useMediaQuery({ query: '(max-width: 640px)' })
+  const isMobileDevice: boolean = useMediaQuery({ query: '(max-width: 640px)' })
 
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen)
