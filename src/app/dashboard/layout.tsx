@@ -51,7 +51,7 @@ export default function Layout ({ children }: Readonly<{ children: React.ReactNo
           </div>
 
         </ul>
-        <div className="w-full md:w-1/2 h-full flex flex-row items-center justify-center md:justify-end pr-4 gap-4">
+        <div className="w-full md:w-1/2 h-full flex flex-row items-center justify-center md:justify-end sm:pr-4 gap-4">
           {
             (session)
               ? <>

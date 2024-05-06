@@ -3,6 +3,7 @@ import Drawer from '@mui/material/Drawer'
 import { cinzel } from '@/utils/fonts'
 import { Avatar, Button, FormControl, TextField, ThemeProvider, Typography, createTheme } from '@mui/material'
 import React from 'react'
+import { useMediaQuery } from 'React-responsive'
 import { useSession } from 'next-auth/react'
 
 interface TemporaryDrawerProps {
@@ -17,13 +18,14 @@ const darkTheme = createTheme({
 export default function TemporaryDrawer ({ logout }: TemporaryDrawerProps): JSX.Element {
   const [open, setOpen] = React.useState(false)
   const { data: session } = useSession()
+  const isMobileDevice = useMediaQuery({ query: '(max-width: 640px)' })
 
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen)
   }
   const DrawerList = (
     <Box sx={{
-      width: 450,
+      width: isMobileDevice ? '100%' : '450px',
       height: '100%',
       display: 'flex',
       flexDirection: 'column',
@@ -36,7 +38,7 @@ export default function TemporaryDrawer ({ logout }: TemporaryDrawerProps): JSX.
       role="presentation" onClick={toggleDrawer(false)}>
 
       <FormControl sx={{
-        width: 450,
+        width: isMobileDevice ? '100vw' : '450px',
         height: '50%',
         display: 'flex',
         flexDirection: 'column',
