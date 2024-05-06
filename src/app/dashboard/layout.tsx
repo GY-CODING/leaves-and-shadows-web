@@ -27,10 +27,14 @@ export default function Layout ({ children }: Readonly<{ children: React.ReactNo
   useEffect(() => {
     if (pathname === '/dashboard') {
       setLayout('Login')
-    } else if (pathname === '/dashboard/login' || session != null) {
+    } else if (pathname === '/dashboard/login') {
       setLayout('Dashboard')
     }
-  }, [pathname])
+
+    if (pathname === '/dashboard/login' && session) {
+      router.push('/dashboard')
+    }
+  }, [pathname, session])
 
   async function handleSignOut (): Promise<void> {
     await signOut()
@@ -49,7 +53,7 @@ export default function Layout ({ children }: Readonly<{ children: React.ReactNo
         </ul>
         <div className="w-full md:w-1/2 h-full flex flex-row items-center justify-center md:justify-end pr-4 gap-4">
           {
-            (session != null)
+            (layout === 'Login' || session)
               ? <>
                 <TemporaryDrawer logout={handleSignOut} />
               </>
