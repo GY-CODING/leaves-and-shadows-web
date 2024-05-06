@@ -2,12 +2,11 @@
 import Box from '@mui/material/Box'
 import Drawer from '@mui/material/Drawer'
 import { cinzel } from '@/utils/fonts'
-import { Avatar, Button, FormControl, Icon, TextField, ThemeProvider, Typography, createTheme, useTheme } from '@mui/material'
+import { Avatar, Button, FormControl, TextField, ThemeProvider, Typography, createTheme, useTheme } from '@mui/material'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import CloseIcon from '@mui/icons-material/Close'
 
 import React from 'react'
-// import { useMediaQuery } from 'React-responsive'
 import { useSession } from 'next-auth/react'
 
 interface TemporaryDrawerProps {
