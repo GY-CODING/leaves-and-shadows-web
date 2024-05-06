@@ -53,7 +53,7 @@ export default function Layout ({ children }: Readonly<{ children: React.ReactNo
         </ul>
         <div className="w-full md:w-1/2 h-full flex flex-row items-center justify-center md:justify-end pr-4 gap-4">
           {
-            (layout === 'Login' || session)
+            (session)
               ? <>
                 <TemporaryDrawer logout={handleSignOut} />
               </>
