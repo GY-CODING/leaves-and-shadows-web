@@ -1,9 +1,12 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import Box from '@mui/material/Box'
 import Drawer from '@mui/material/Drawer'
 import { cinzel } from '@/utils/fonts'
-import { Avatar, Button, FormControl, TextField, ThemeProvider, Typography, createTheme } from '@mui/material'
+import { Avatar, Button, FormControl, TextField, ThemeProvider, Typography, createTheme, useTheme } from '@mui/material'
+import useMediaQuery from '@mui/material/useMediaQuery'
+
 import React from 'react'
-import { useMediaQuery } from 'React-responsive'
+// import { useMediaQuery } from 'React-responsive'
 import { useSession } from 'next-auth/react'
 
 interface TemporaryDrawerProps {
@@ -18,7 +21,9 @@ const darkTheme = createTheme({
 export default function TemporaryDrawer ({ logout }: TemporaryDrawerProps): JSX.Element {
   const [open, setOpen] = React.useState(false)
   const { data: session } = useSession()
-  const isMobileDevice: boolean = useMediaQuery({ query: '(max-width: 640px)' })
+  const theme = useTheme()
+
+  const isMobileDevice = useMediaQuery(theme.breakpoints.down('sm'))
 
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen)
