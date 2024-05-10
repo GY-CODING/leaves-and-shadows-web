@@ -53,7 +53,7 @@ export default function Home (): JSX.Element {
           className="blur"
         />
       </Box>
-      <Image className='sm:w-2/12 w-1/3' src={logo} width={200} height={200} alt={''} />
+      <Image draggable={false} className='sm:w-2/12 w-1/3' src={logo} width={200} height={200} alt={''} />
       <h3 className={`${alkhemikal.className} sm:text-7xl text-4xl text-white`}>Leaves & Shadows</h3>
         <button className={`${cinzel.className} w-32 h-12 rounded bg-green-600 text-white hover:bg-green-500 ease-in-out transition-all duration-500 `}>Download</button>
     </Box>

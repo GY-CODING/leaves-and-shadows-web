@@ -45,7 +45,7 @@ export default function Layout ({ children }: Readonly<{ children: React.ReactNo
     <>
       <header className={'w-screen sm:h-24 h-24 bg-zinc-900 flex justify-evenly md:justify-between flex-col md:flex-row self-start  bg-opacity-20 backdrop:blur-'}>
         <ul className="flex flex-row justify-center align-center md:items-center text-center md:w-1/2 md:text-center md:justify-center md:align-center gap-4">
-          <Image onClick={pushToDashboard} src={logo} className="md:flex hidden w-16 h-16 hover:cursor-pointer ml-4" alt="logo" width={100} height={100} />
+          <Image draggable={false} onClick={pushToDashboard} src={logo} className="md:flex hidden w-16 h-16 hover:cursor-pointer ml-4" alt="logo" width={100} height={100} />
           <div className="w-full text-center md:w-full h-full flex items-center justify-start">
             <Link className={`${cinzel.className} hidden md:flex md:text-center md:items-center md:justify-center font-bold text-sm md:h-full text-green-50 sm:text-sm md:text-base lg:text-lg xl:text-xl`} href={'/dashboard/'} onClick={pushToDashboard}>Leaves & Shadows</Link>
           </div>
