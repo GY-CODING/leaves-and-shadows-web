@@ -24,8 +24,7 @@ export default function Characters (): JSX.Element {
 
   useEffect(() => {
     const charactersLI = document.querySelectorAll('.character-li')
-    // eslint-disable-next-line eqeqeq
-    if (world != '') {
+    if (world !== '') {
       charactersLI.forEach((character: any) => {
         if (
           character.getAttribute('data-value')?.toLocaleLowerCase() !==
@@ -52,8 +51,8 @@ export default function Characters (): JSX.Element {
       <div
         key={i}
         className={
-          'bg-zinc-900 w-1/6 h-80 back  relative flex flex-col items-center justify-center hover:scale-105 transition-all border border-transparent duration-500 hover:border hover:border-teal-700 animate-pulse'
-        }
+        'character-li bg-zinc-800 w-full h-14 sm:w-52 sm:h-80 relative flex-row flex sm:flex-col sm:items-center sm:justify-center hover:scale-105 transition-all border border-transparent duration-500 animate-pulse '
+      }
       />
     ))
   }
@@ -149,7 +148,7 @@ export default function Characters (): JSX.Element {
         />
       </div>
 
-      <div className="w-11/12 h-5/6 flex flex-row items-start content-start sm:flex-row sm:flex-wrap flex-wrap sm:gap-4 sm:items-center justify-center overflow-auto p-4">
+      <div className="w-11/12 h-5/6 flex flex-row items-start content-start sm:flex-row sm:flex-wrap flex-wrap gap-1 sm:gap-4 sm:items-center justify-center overflow-auto p-4">
         {loading ? skeleton() : filterCharacters()}
       </div>
     </div>

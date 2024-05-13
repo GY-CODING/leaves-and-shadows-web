@@ -43,7 +43,7 @@ export default function CharacterCard ({
             flexDirection: 'row'
           }
         }}
-        alt={'Jormungander'}
+        alt={name}
         src={imagen}
       />
       <Box
@@ -80,7 +80,7 @@ export default function CharacterCard ({
             height: isClicked ? '60%' : '100%',
             '@media (max-width: 640px)': {
               height: isClicked ? '100%' : '100%',
-              width: '50%'
+              width: '75%'
             }
           }}
         >
@@ -120,7 +120,7 @@ export default function CharacterCard ({
               height: '100%',
               position: 'static',
               animation: `${def} .33s ease-out forwards`,
-              width: isClicked ? '50%' : '45%',
+              width: isClicked ? '30%' : '25%',
               transition: 'all 0.5s'
             }
           }}

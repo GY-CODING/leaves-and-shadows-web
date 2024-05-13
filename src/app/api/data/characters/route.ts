@@ -8,7 +8,6 @@ export async function GET (_req: any, _res: any): Promise<NextResponse> {
     }
   )
   const data = await response.json()
-  console.log(data[20].image)
   if (!response.ok) {
     throw new Error('Error fetching characters')
   }
