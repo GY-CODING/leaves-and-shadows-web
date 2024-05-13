@@ -1,22 +1,22 @@
-import { type Character } from "@/domain/character";
-import { charactersFromDto } from "@/mappers/characters.mapper";
+import { type Character } from '@/domain/character'
+import { charactersFromDto } from '@/mappers/characters.mapper'
 
-export async function getCharacters(): Promise<Character[]> {
-  const response = await fetch("/api/data/characters", {
-    method: "GET",
+export async function getCharacters (): Promise<Character[]> {
+  const response = await fetch('/api/data/characters', {
+    method: 'GET',
     headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  const data = await response.json();
+      'Content-Type': 'application/json'
+    }
+  })
+  const data = await response.json()
 
   if (!response.ok) {
-    throw new Error("Error fetching characters");
+    throw new Error('Error fetching characters')
   }
-  const characters: Character[] = [];
+  const characters: Character[] = []
   data.forEach((character: any) => {
-    characters.push(charactersFromDto(character));
-  });
+    characters.push(charactersFromDto(character))
+  })
 
-  return characters;
+  return characters
 }

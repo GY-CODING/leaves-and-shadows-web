@@ -1,66 +1,66 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 /* eslint-disable @typescript-eslint/no-confusing-void-expression */
-"use client";
-import { cinzel } from "@/utils/fonts";
-import React, { useEffect, useState } from "react";
-import CharacterCard from "@/components/CharacterCard";
-import { getCharacters } from "@/services/characters";
-import { type Character } from "@/domain/character";
-import { ButtonDefault, ButtonFilter } from "@/components/Worlds";
+'use client'
+import { cinzel } from '@/utils/fonts'
+import React, { useEffect, useState } from 'react'
+import CharacterCard from '@/components/CharacterCard'
+import { getCharacters } from '@/services/characters'
+import { type Character } from '@/domain/character'
+import { ButtonDefault, ButtonFilter } from '@/components/Worlds'
 
-export default function Characters(): JSX.Element {
-  const [characterName, setCharacterName] = useState("");
-  const [characters, setCharacters] = useState<Character[] | any>([]);
-  const [world, setWorld] = useState("");
-  const [loading, setLoading] = useState(true);
+export default function Characters (): JSX.Element {
+  const [characterName, setCharacterName] = useState('')
+  const [characters, setCharacters] = useState<Character[] | any>([])
+  const [world, setWorld] = useState('')
+  const [loading, setLoading] = useState(true)
   useEffect(() => {
-    async function fetchCharacters(): Promise<void> {
-      const charactersFetched = await getCharacters();
-      setCharacters(charactersFetched);
-      setLoading(false);
+    async function fetchCharacters (): Promise<void> {
+      const charactersFetched = await getCharacters()
+      setCharacters(charactersFetched)
+      setLoading(false)
     }
-    void fetchCharacters();
-  }, []);
+    void fetchCharacters()
+  }, [])
 
   useEffect(() => {
-    const charactersLI = document.querySelectorAll(".character-li");
+    const charactersLI = document.querySelectorAll('.character-li')
     // eslint-disable-next-line eqeqeq
-    if (world != "") {
+    if (world != '') {
       charactersLI.forEach((character: any) => {
         if (
-          character.getAttribute("data-value")?.toLocaleLowerCase() !==
+          character.getAttribute('data-value')?.toLocaleLowerCase() !==
           world.toLowerCase()
         ) {
-          character.style.display = "none";
+          character.style.display = 'none'
         } else {
-          character.style.display = "flex";
+          character.style.display = 'flex'
         }
-      });
+      })
     } else {
       charactersLI.forEach((character: any) => {
-        character.style.display = "flex";
-      });
+        character.style.display = 'flex'
+      })
     }
-  }, [world, characters]);
+  }, [world, characters])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const name = e.target.value;
-    setCharacterName(name);
-  };
-  function skeleton(): JSX.Element[] {
+    const name = e.target.value
+    setCharacterName(name)
+  }
+  function skeleton (): JSX.Element[] {
     return Array.from({ length: 58 }, (_, i) => (
       <div
         key={i}
         className={
-          "bg-zinc-900 w-1/6 h-80 back  relative flex flex-col items-center justify-center hover:scale-105 transition-all border border-transparent duration-500 hover:border hover:border-teal-700 animate-pulse"
+          'bg-zinc-900 w-1/6 h-80 back  relative flex flex-col items-center justify-center hover:scale-105 transition-all border border-transparent duration-500 hover:border hover:border-teal-700 animate-pulse'
         }
       />
-    ));
+    ))
   }
 
-  function filterCharacters(): JSX.Element | undefined {
+  function filterCharacters (): JSX.Element | undefined {
     if (characters) {
-      if (characterName === "") {
+      if (characterName === '') {
         return characters.map((character: any) => (
           <CharacterCard
             key={character.identifier}
@@ -68,13 +68,13 @@ export default function Characters(): JSX.Element {
             world={character.world}
             imagen={character.image}
           />
-        ));
+        ))
       } else {
         return characters
           .filter((character: any) =>
             character.name
               .toLowerCase()
-              .startsWith(characterName.toLowerCase()),
+              .startsWith(characterName.toLowerCase())
           )
           .map((filteredCharacter: any) => (
             <CharacterCard
@@ -83,7 +83,7 @@ export default function Characters(): JSX.Element {
               world={filteredCharacter.world}
               imagen={filteredCharacter.image}
             />
-          ));
+          ))
       }
     }
   }
@@ -101,51 +101,51 @@ export default function Characters(): JSX.Element {
         onChange={handleChange}
       />
       <div className="flex-row gap-3 flex-wrap sm:flex hidden justify-center items-center">
-        <ButtonDefault currentWorld={world} setWorld={setWorld} mundo={""} />
+        <ButtonDefault currentWorld={world} setWorld={setWorld} mundo={''} />
         <ButtonFilter
           currentWorld={world}
           setWorld={setWorld}
-          mundo={"ASGARD"}
+          mundo={'ASGARD'}
         />
         <ButtonFilter
           currentWorld={world}
           setWorld={setWorld}
-          mundo={"ALFHEIM"}
+          mundo={'ALFHEIM'}
         />
         <ButtonFilter
           currentWorld={world}
           setWorld={setWorld}
-          mundo={"VANAHEIM"}
+          mundo={'VANAHEIM'}
         />
         <ButtonFilter
           currentWorld={world}
           setWorld={setWorld}
-          mundo={"SVARTALFHEIM"}
+          mundo={'SVARTALFHEIM'}
         />
         <ButtonFilter
           currentWorld={world}
           setWorld={setWorld}
-          mundo={"MIDGARD"}
+          mundo={'MIDGARD'}
         />
         <ButtonFilter
           currentWorld={world}
           setWorld={setWorld}
-          mundo={"JOTUNHEIM"}
+          mundo={'JOTUNHEIM'}
         />
         <ButtonFilter
           currentWorld={world}
           setWorld={setWorld}
-          mundo={"MUSPELHEIM"}
+          mundo={'MUSPELHEIM'}
         />
         <ButtonFilter
           currentWorld={world}
           setWorld={setWorld}
-          mundo={"HELHEIM"}
+          mundo={'HELHEIM'}
         />
         <ButtonFilter
           currentWorld={world}
           setWorld={setWorld}
-          mundo={"GINNUNGAGAP"}
+          mundo={'GINNUNGAGAP'}
         />
       </div>
 
@@ -153,5 +153,5 @@ export default function Characters(): JSX.Element {
         {loading ? skeleton() : filterCharacters()}
       </div>
     </div>
-  );
+  )
 }

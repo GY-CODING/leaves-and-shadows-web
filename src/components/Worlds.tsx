@@ -1,16 +1,16 @@
-import { VscAccount } from "react-icons/vsc";
-import { returnColorWorld } from "@/utils/functions";
+import { VscAccount } from 'react-icons/vsc'
+import { returnColorWorld } from '@/utils/functions'
 
-import React from "react";
+import React from 'react'
 
-export function ButtonFilter({
+export function ButtonFilter ({
   setWorld,
   mundo,
-  currentWorld,
+  currentWorld
 }: {
-  setWorld: any;
-  mundo: string;
-  currentWorld: string;
+  setWorld: any
+  mundo: string
+  currentWorld: string
 }): JSX.Element {
   return (
     <button
@@ -19,24 +19,24 @@ export function ButtonFilter({
       style={
         mundo.toLowerCase() === currentWorld
           ? {
-              backgroundColor: returnColorWorld("SX", mundo.toLowerCase()),
-              color: "black",
+              backgroundColor: returnColorWorld('SX', mundo.toLowerCase()),
+              color: 'black'
             }
           : {}
       }
     >
       {mundo}
     </button>
-  );
+  )
 }
-export function ButtonDefault({
+export function ButtonDefault ({
   setWorld,
   mundo,
-  currentWorld,
+  currentWorld
 }: {
-  setWorld: any;
-  mundo: string;
-  currentWorld: string;
+  setWorld: any
+  mundo: string
+  currentWorld: string
 }): JSX.Element {
   return (
     <button
@@ -44,14 +44,14 @@ export function ButtonDefault({
       className="w-12 h-10 dark:text-zinc-200 hover:bg-zinc-950 hover:text-zinc-50  bold rounded border border-transparent transition duration-500 ease-in-out dark:hover:border-zinc-300 dark:hover:bg-white dark:hover:text-zinc-900 dark:bg-zinc-800 bg-zinc-50 text-black flex items-center justify-center overflow-hidden"
     >
       <VscAccount
-        width={"3em"}
+        width={'3em'}
         className="hover:text-black hover:bg-zinc-950 text-white text-2xl transition duration-500 ease-in-out w-full h-full p-2"
         style={
-          currentWorld === ""
-            ? { backgroundColor: "white", color: "black" }
+          currentWorld === ''
+            ? { backgroundColor: 'white', color: 'black' }
             : {}
         }
       />
     </button>
-  );
+  )
 }
