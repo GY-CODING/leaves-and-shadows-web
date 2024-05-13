@@ -12,6 +12,7 @@ This is the official **Fall of the Gods Leaves and Shadows Web**
 
 This web application uses **NextJS** with **Typescript** and **MaterialUI** for components.
 
+
 <br>
 
 <pre>Made by GYCODING</pre>
