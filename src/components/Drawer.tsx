@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
-import Box from '@mui/material/Box'
-import Drawer from '@mui/material/Drawer'
-import { cinzel } from '@/utils/fonts'
+import Box from "@mui/material/Box";
+import Drawer from "@mui/material/Drawer";
+import { cinzel } from "@/utils/fonts";
 import {
   Avatar,
   Button,
@@ -10,82 +10,82 @@ import {
   ThemeProvider,
   Typography,
   createTheme,
-  useTheme
-} from '@mui/material'
-import useMediaQuery from '@mui/material/useMediaQuery'
-import CloseIcon from '@mui/icons-material/Close'
+  useTheme,
+} from "@mui/material";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import CloseIcon from "@mui/icons-material/Close";
 
-import React from 'react'
-import { useSession } from 'next-auth/react'
+import React from "react";
+import { useSession } from "next-auth/react";
 
 interface TemporaryDrawerProps {
-  logout: () => void
+  logout: () => void;
 }
 const darkTheme = createTheme({
   palette: {
-    mode: 'dark'
-  }
-})
+    mode: "dark",
+  },
+});
 
-export default function TemporaryDrawer ({
-  logout
+export default function TemporaryDrawer({
+  logout,
 }: TemporaryDrawerProps): JSX.Element {
-  const [open, setOpen] = React.useState(false)
-  const { data: session } = useSession()
-  const theme = useTheme()
+  const [open, setOpen] = React.useState(false);
+  const { data: session } = useSession();
+  const theme = useTheme();
 
-  const isMobileDevice = useMediaQuery(theme.breakpoints.down('sm'))
+  const isMobileDevice = useMediaQuery(theme.breakpoints.down("sm"));
 
   const toggleDrawer = (newOpen: boolean) => () => {
-    setOpen(newOpen)
-  }
+    setOpen(newOpen);
+  };
   const DrawerList = (
     <Box
       sx={{
-        width: isMobileDevice ? '100%' : '450px',
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        backdropFilter: 'blur(10px)',
+        width: isMobileDevice ? "100%" : "450px",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "space-around",
+        backdropFilter: "blur(10px)",
         gap: 2,
 
-        '&.MuiBox-root': { backgroundColor: 'rgb(9 9 11)' }
+        "&.MuiBox-root": { backgroundColor: "rgb(9 9 11)" },
       }}
       role="presentation"
     >
       <Button
         sx={{
-          color: 'white',
-          width: '24px',
-          position: 'absolute',
-          top: '24px',
-          right: '24px'
+          color: "white",
+          width: "24px",
+          position: "absolute",
+          top: "24px",
+          right: "24px",
         }}
       >
         <CloseIcon onClick={toggleDrawer(false)} />
       </Button>
       <FormControl
         sx={{
-          width: isMobileDevice ? '100vw' : '450px',
-          height: '50%',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          backdropFilter: 'blur(10px)',
-          gap: 2
+          width: isMobileDevice ? "100vw" : "450px",
+          height: "50%",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          backdropFilter: "blur(10px)",
+          gap: 2,
         }}
       >
         <ThemeProvider theme={darkTheme}>
           <Avatar
-            alt={session?.user?.name ?? ''}
-            src={session?.user?.image ?? ''}
-            sx={{ width: '100px', height: '100px' }}
+            alt={session?.user?.name ?? ""}
+            src={session?.user?.image ?? ""}
+            sx={{ width: "100px", height: "100px" }}
           />
           <Typography
-            sx={{ color: 'white' }}
+            sx={{ color: "white" }}
             variant="h4"
             className={cinzel.className}
           >
@@ -95,27 +95,27 @@ export default function TemporaryDrawer ({
             id="Username"
             label="Username"
             InputLabelProps={{
-              shrink: true
+              shrink: true,
             }}
             disabled
             fullWidth
             variant="outlined"
-            sx={{ width: '90%' }}
-            defaultValue={session?.user?.name ?? 'No session'}
-            value={session?.user?.name ?? 'No session'}
+            sx={{ width: "90%" }}
+            defaultValue={session?.user?.name ?? "No session"}
+            value={session?.user?.name ?? "No session"}
           />
           <TextField
             id="email"
             label="Email"
             InputLabelProps={{
-              shrink: true
+              shrink: true,
             }}
             disabled
             fullWidth
             variant="outlined"
-            sx={{ width: '90%' }}
-            defaultValue={session?.user?.email ?? 'No session'}
-            value={session?.user?.email ?? 'No session'}
+            sx={{ width: "90%" }}
+            defaultValue={session?.user?.email ?? "No session"}
+            value={session?.user?.email ?? "No session"}
             type="email"
           />
         </ThemeProvider>
@@ -128,7 +128,7 @@ export default function TemporaryDrawer ({
         Logout
       </button>
     </Box>
-  )
+  );
 
   return (
     <>
@@ -138,22 +138,22 @@ export default function TemporaryDrawer ({
         onClick={toggleDrawer(true)}
         sx={{
           fontFamily: cinzel.className,
-          width: '10rem',
-          height: '3rem',
-          backgroundColor: '#09090b',
-          color: 'white',
-          pointerEvents: 'auto',
+          width: "10rem",
+          height: "3rem",
+          backgroundColor: "#09090b",
+          color: "white",
+          pointerEvents: "auto",
           zIndex: 1,
-          transitionDuration: '500ms',
-          '&:hover': {
-            backgroundColor: '#22c55e',
-            color: 'white',
-            transitionDuration: '500ms'
+          transitionDuration: "500ms",
+          "&:hover": {
+            backgroundColor: "#22c55e",
+            color: "white",
+            transitionDuration: "500ms",
           },
-          borderRadius: 'rounded',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-evenly'
+          borderRadius: "rounded",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-evenly",
         }}
         startIcon={
           <Avatar
@@ -163,11 +163,11 @@ export default function TemporaryDrawer ({
           />
         }
       >
-        {session?.user?.name?.toString().split(' ')[0] ?? ''}
+        {session?.user?.name?.toString().split(" ")[0] ?? ""}
       </Button>
       <Drawer anchor="right" open={open} onClose={toggleDrawer(false)}>
         {DrawerList}
       </Drawer>
     </>
-  )
+  );
 }

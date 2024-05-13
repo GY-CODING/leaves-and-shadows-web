@@ -1,4 +1,4 @@
-import { type Character } from '@/domain/character'
+import { type Character } from "@/domain/character";
 
 export const charactersFromDto = (obj: any): Character => {
   const character: Character = {
@@ -15,17 +15,17 @@ export const charactersFromDto = (obj: any): Character => {
       accuracy: obj.stats.accuracy,
       life: obj.stats.life,
       ether: obj.stats.ether,
-      movement: obj.stats.movement
+      movement: obj.stats.movement,
     },
     ability: {
       abilityName: obj.ability.abilityName,
-      abilityDesc: obj.ability.abilityDesc
+      abilityDesc: obj.ability.abilityDesc,
     },
     stories: obj.stories.map((story: any) => ({
       identifier: story.identifier,
       title: story.title,
-      text: story.text
-    }))
-  }
-  return character
-}
+      text: story.text,
+    })),
+  };
+  return character;
+};
