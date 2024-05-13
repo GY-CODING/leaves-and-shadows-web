@@ -9,8 +9,5 @@ export default function Home (): JSX.Element {
     router.replace('/dashboard')
   }, [])
 
-  return (
-    <main className="w-screen h-screen flex flex-col bg-white">
-    </main>
-  )
+  return <main className="w-screen h-screen flex flex-col bg-white"></main>
 }

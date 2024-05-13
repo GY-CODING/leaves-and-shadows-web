@@ -11,7 +11,9 @@ import { useRouter, usePathname } from 'next/navigation'
 import TemporaryDrawer from '@/components/Drawer'
 import { useSession, signOut } from 'next-auth/react'
 
-export default function Layout ({ children }: Readonly<{ children: React.ReactNode }>): JSX.Element {
+export default function Layout ({
+  children
+}: Readonly<{ children: React.ReactNode }>): JSX.Element {
   const router = useRouter()
   const pathname = usePathname()
   const { data: session } = useSession()
@@ -43,24 +45,48 @@ export default function Layout ({ children }: Readonly<{ children: React.ReactNo
 
   return (
     <>
-      <header className={'w-screen sm:h-24 h-24 bg-zinc-900 flex justify-evenly md:justify-between flex-col md:flex-row self-start  bg-opacity-20 backdrop:blur-'}>
+      <header
+        className={
+          'w-screen sm:h-24 h-24 bg-zinc-900 flex justify-evenly md:justify-between flex-col md:flex-row self-start  bg-opacity-20 backdrop:blur-'
+        }
+      >
         <ul className="flex flex-row justify-center align-center md:items-center text-center md:w-1/2 md:text-center md:justify-center md:align-center gap-4">
-          <Image draggable={false} onClick={pushToDashboard} src={logo} className="md:flex hidden w-16 h-16 hover:cursor-pointer ml-4" alt="logo" width={100} height={100} />
+          <Image
+            draggable={false}
+            onClick={pushToDashboard}
+            src={logo}
+            className="md:flex hidden w-16 h-16 hover:cursor-pointer ml-4"
+            alt="logo"
+            width={100}
+            height={100}
+          />
           <div className="w-full text-center md:w-full h-full flex items-center justify-start">
-            <Link className={`${cinzel.className} hidden md:flex md:text-center md:items-center md:justify-center font-bold text-sm md:h-full text-green-50 sm:text-sm md:text-base lg:text-lg xl:text-xl`} href={'/dashboard/'} onClick={pushToDashboard}>Leaves & Shadows</Link>
+            <Link
+              className={`${cinzel.className} hidden md:flex md:text-center md:items-center md:justify-center font-bold text-sm md:h-full text-green-50 sm:text-sm md:text-base lg:text-lg xl:text-xl`}
+              href={'/dashboard/'}
+              onClick={pushToDashboard}
+            >
+              Leaves & Shadows
+            </Link>
           </div>
-
         </ul>
         <div className="w-full md:w-1/2 h-full flex flex-row items-center justify-center md:justify-end sm:pr-4 gap-4">
-          {
-            (session)
-              ? <>
-                <TemporaryDrawer logout={handleSignOut} />
-              </>
-              : <button className="w-40 h-12 rounded bg-zinc-950 flex text-white">
-                <Link href={layout === 'Login' ? '/dashboard/login' : '/dashboard'} className={`${cinzel.className} text-green-40 0bg-zinc-950 hover:bg-green-500 hover:text-white w-full h-full rounded text-center items-center justify-center flex transition duration-500 ease-in-out`}>{layout || 'Login'}</Link>
-              </button>
-          }
+          {session
+            ? (
+            <>
+              <TemporaryDrawer logout={handleSignOut} />
+            </>
+              )
+            : (
+            <button className="w-40 h-12 rounded bg-zinc-950 flex text-white">
+              <Link
+                href={layout === 'Login' ? '/dashboard/login' : '/dashboard'}
+                className={`${cinzel.className} text-green-40 0bg-zinc-950 hover:bg-green-500 hover:text-white w-full h-full rounded text-center items-center justify-center flex transition duration-500 ease-in-out`}
+              >
+                {layout || 'Login'}
+              </Link>
+            </button>
+              )}
         </div>
       </header>
       {children}

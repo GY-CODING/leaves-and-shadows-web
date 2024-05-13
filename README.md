@@ -1,8 +1,6 @@
 # Fall of the Gods API
 
-
 [![developer](https://img.shields.io/badge/developed-GYCoding-purple?style=for-the-badge)](https://gycoding.com)
-
 
 # Introduction
 

@@ -13,7 +13,11 @@ export class Cipher {
     return hashedPassword
   }
 
-  static verifyPassword (enteredPassword: string, salt: Buffer, storedHashedPassword: Buffer): boolean {
+  static verifyPassword (
+    enteredPassword: string,
+    salt: Buffer,
+    storedHashedPassword: Buffer
+  ): boolean {
     const calculatedHash = this.hashPassword(enteredPassword, salt)
     return crypto.timingSafeEqual(calculatedHash, storedHashedPassword)
   }
