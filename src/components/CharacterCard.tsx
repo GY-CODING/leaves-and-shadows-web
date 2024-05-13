@@ -60,6 +60,7 @@ export default function CharacterCard ({
           borderTop: `2px solid ${returnColorWorld('SX', world)}`,
           justifyContent: 'start',
           overflow: 'hidden',
+          cursor: 'pointer',
           '@media (max-width: 640px)': {
             position: 'static',
             bottom: 'initial',
@@ -87,14 +88,15 @@ export default function CharacterCard ({
             sx={{
               fontFamily: 'cinzel',
               fontWeight: 'bold',
-              color: returnColorWorld('SX', world)
+              color: returnColorWorld('SX', world),
+              cursor: 'pointer'
             }}
           >
             {name}
           </Typography>
           <Typography
             variant="h6"
-            sx={{ fontFamily: 'cinzel', color: 'white', fontSize: '13px' }}
+            sx={{ fontFamily: 'cinzel', color: 'white', fontSize: '13px', cursor: 'pointer' }}
           >
             {world}
           </Typography>

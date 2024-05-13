@@ -91,7 +91,7 @@ export default function Characters (): JSX.Element {
   return (
     <div className="w-full h-5/6 flex flex-col gap-4 items-center justify-center">
       <h1
-        className={`${cinzel.className} font-semibold text-white text-xl sm:text-3xl`}
+        className={`${cinzel.className} font-semibold text-white text-xl sm:text-3xl mt-4`}
       >
         Characters
       </h1>
