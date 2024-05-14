@@ -1,5 +1,6 @@
 import { def, grow, returnColorWorld } from '@/utils/functions'
 import { Box, Typography } from '@mui/material'
+import Link from 'next/link'
 import React, { useState } from 'react'
 
 interface characterProps {
@@ -132,7 +133,7 @@ export default function CharacterCard ({
               color: 'inherit'
             }}
           >
-            Explorar
+            <Link href={`/dashboard/characters/${name.toLowerCase()}`}>Explorar</Link>
           </Typography>
         </Box>
       </Box>

@@ -74,7 +74,6 @@ async function sendEmail (email: string, username: string): Promise<void> {
       throw new Error(`response status: ${response.status}`)
     }
     const responseData = await response.json()
-    console.log(responseData.message)
   } catch (err) {
     console.error(err)
   }
