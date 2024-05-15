@@ -6,6 +6,7 @@ export interface Character {
   world: string
   image: string
   inGame: boolean
+  race: string
   stats: {
     attack: number
     defense: number

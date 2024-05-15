@@ -9,6 +9,7 @@ export const charactersFromDto = (obj: any): Character => {
     world: obj.world,
     image: obj.image,
     inGame: true,
+    race: obj.race,
     stats: {
       attack: obj.stats.attack,
       defense: obj.stats.defense,

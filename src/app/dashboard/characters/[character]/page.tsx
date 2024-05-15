@@ -18,8 +18,10 @@ import {
   NONE
 } from '@/utils/global.constants'
 import {
+  returnImageWorld,
   returnPrimaryColorByWorld,
-  returnSecondaryColorByWorld
+  returnSecondaryColorByWorld,
+  returnWorldIcon
 } from '@/utils/functions'
 
 export default function page ({
@@ -60,6 +62,7 @@ export default function page ({
     async function fetchCharacter (): Promise<void> {
       const characterFetched = await getCharacter(character)
       setdatos(characterFetched)
+      console.log(characterFetched)
       setIsLoading(false)
     }
     void fetchCharacter()
@@ -140,7 +143,7 @@ export default function page ({
               {'RAZA'}
             </Typography>
             <Typography sx={{ fontFamily: 'cinzel', color: secondaryColor }}>
-              {'DIOS AESIR'}
+              {datos?.race}
             </Typography>
           </Box>
           <Box
@@ -345,6 +348,7 @@ export default function page ({
               borderRadius: '10px',
               flexDirection: 'column',
               gap: '0',
+              position: 'relative',
               '@media (max-width: 600px)': {
                 height: '50%',
                 fontSize: '12px'
@@ -352,6 +356,17 @@ export default function page ({
             }
           ]}
         >
+          <Box sx={{
+            objectFit: 'cover',
+            width: '100%',
+            height: '100%',
+            position: 'absolute',
+            opacity: '.2',
+            backgroundPosition: '67.4897% 14.6444%',
+            filter: 'brightness(.3) grayscale(100%)',
+            borderRadius: '10px'
+          }} component='img' src={returnImageWorld(datos?.world?.toUpperCase() ?? '')}/>
+
           <Typography sx={{
             fontFamily: 'cinzel',
             color: primaryColor,
@@ -370,6 +385,13 @@ export default function page ({
           }}>
             {datos?.world.toUpperCase()}
           </Typography>
+          <Box sx={{
+            marginTop: '10%',
+            width: '80%',
+            '@media (max-width: 1000px)': {
+              display: 'none'
+            }
+          }} component='img' src={returnWorldIcon(datos?.world?.toUpperCase() ?? '')}/>
         </Box>
       </Box>
     </Box>
