@@ -1,4 +1,5 @@
 import { def, grow, returnColorWorld } from '@/utils/functions'
+import { SX } from '@/utils/global.constants'
 import { Box, Typography } from '@mui/material'
 import Link from 'next/link'
 import React, { useState } from 'react'
@@ -23,7 +24,7 @@ export default function CharacterCard ({
         'character-li w-full h-14 sm:w-52 sm:h-80 relative flex-row flex sm:flex-col sm:items-center sm:justify-center hover:scale-105 transition-all border border-transparent duration-500 '
       }
       style={{
-        borderColor: isClicked ? returnColorWorld('SX', world) : 'transparent'
+        borderColor: isClicked ? returnColorWorld(SX, world) : 'transparent'
       }}
       onMouseEnter={() => {
         setIsClicked(true)
@@ -60,7 +61,7 @@ export default function CharacterCard ({
           display: 'flex',
           flexDirection: 'column',
           textAlign: 'center',
-          borderTop: `2px solid ${returnColorWorld('SX', world)}`,
+          borderTop: `2px solid ${returnColorWorld(SX, world)}`,
           justifyContent: 'start',
           overflow: 'hidden',
           cursor: 'pointer',
@@ -69,7 +70,7 @@ export default function CharacterCard ({
             bottom: 'initial',
             height: '100%',
             width: '100%',
-            border: `0px solid ${returnColorWorld('SX', world)}`,
+            border: `0px solid ${returnColorWorld(SX, world)}`,
             flexDirection: 'row'
           }
         }}
@@ -91,7 +92,7 @@ export default function CharacterCard ({
             sx={{
               fontFamily: 'cinzel',
               fontWeight: 'bold',
-              color: returnColorWorld('SX', world),
+              color: returnColorWorld(SX, world),
               cursor: 'pointer'
             }}
           >
@@ -117,11 +118,11 @@ export default function CharacterCard ({
             display: isClicked ? 'flex' : 'none',
             animation: `${grow} .33s ease-out forwards`,
             bottom: '0',
-            borderTop: `2px solid ${returnColorWorld('SX', world)}`,
+            borderTop: `2px solid ${returnColorWorld(SX, world)}`,
             position: 'absolute',
             alignItems: 'center',
             justifyContent: 'center',
-            backgroundColor: returnColorWorld('SX', world),
+            backgroundColor: returnColorWorld(SX, world),
             cursor: 'pointer',
             '@media (max-width: 640px)': {
               display: 'flex',

@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
-/* eslint-disable @typescript-eslint/no-confusing-void-expression */
 'use client'
 import { cinzel } from '@/utils/fonts'
 import React, { useEffect, useState } from 'react'
@@ -7,6 +6,7 @@ import CharacterCard from '@/components/CharacterCard'
 import { getCharacters } from '@/services/characters'
 import { type Character } from '@/domain/character'
 import { ButtonDefault, ButtonFilter } from '@/components/Worlds'
+import { ALFHEIM, ASGARD, FLEX, GINNUNGAGAP, HELHEIM, JOTUNHEIM, MIDGARD, MUSPELHEIM, NONE, SVARTALFHEIM, VANAHEIM } from '@/utils/global.constants'
 
 export default function Characters (): JSX.Element {
   const [characterName, setCharacterName] = useState('')
@@ -30,14 +30,14 @@ export default function Characters (): JSX.Element {
           character.getAttribute('data-value')?.toLocaleLowerCase() !==
           world.toLowerCase()
         ) {
-          character.style.display = 'none'
+          character.style.display = NONE
         } else {
-          character.style.display = 'flex'
+          character.style.display = FLEX
         }
       })
     } else {
       charactersLI.forEach((character: any) => {
-        character.style.display = 'flex'
+        character.style.display = FLEX
       })
     }
   }, [world, characters])
@@ -106,47 +106,47 @@ export default function Characters (): JSX.Element {
         <ButtonFilter
           currentWorld={world}
           setWorld={setWorld}
-          mundo={'ASGARD'}
+          mundo={ASGARD}
         />
         <ButtonFilter
           currentWorld={world}
           setWorld={setWorld}
-          mundo={'ALFHEIM'}
+          mundo={ALFHEIM}
         />
         <ButtonFilter
           currentWorld={world}
           setWorld={setWorld}
-          mundo={'VANAHEIM'}
+          mundo={VANAHEIM}
         />
         <ButtonFilter
           currentWorld={world}
           setWorld={setWorld}
-          mundo={'SVARTALFHEIM'}
+          mundo={SVARTALFHEIM}
         />
         <ButtonFilter
           currentWorld={world}
           setWorld={setWorld}
-          mundo={'MIDGARD'}
+          mundo={MIDGARD}
         />
         <ButtonFilter
           currentWorld={world}
           setWorld={setWorld}
-          mundo={'JOTUNHEIM'}
+          mundo={JOTUNHEIM}
         />
         <ButtonFilter
           currentWorld={world}
           setWorld={setWorld}
-          mundo={'MUSPELHEIM'}
+          mundo={MUSPELHEIM}
         />
         <ButtonFilter
           currentWorld={world}
           setWorld={setWorld}
-          mundo={'HELHEIM'}
+          mundo={HELHEIM}
         />
         <ButtonFilter
           currentWorld={world}
           setWorld={setWorld}
-          mundo={'GINNUNGAGAP'}
+          mundo={GINNUNGAGAP}
         />
       </div>
 

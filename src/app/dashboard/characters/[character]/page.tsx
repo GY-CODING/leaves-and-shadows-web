@@ -1,6 +1,5 @@
 'use client'
 import React, { useEffect } from 'react'
-// import Image from 'next/image'
 import { getCharacter } from '@/services/character'
 import { type Character } from '@/domain/character'
 import CircularProgress from '@mui/material/CircularProgress'
@@ -11,8 +10,12 @@ import {
   DAMAGE_ICON,
   DEFENSE_ICON,
   ETHER_ICON,
+  FLEX,
+  FLEX_COLUMN,
+  FLEX_COLUMN_CENTER,
   LIFE_ICON,
-  MOVEMENT_ICON
+  MOVEMENT_ICON,
+  NONE
 } from '@/utils/global.constants'
 import {
   returnPrimaryColorByWorld,
@@ -35,7 +38,7 @@ export default function page ({
     height: '20%',
     backgroundColor: '#0a0a0a',
     borderRadius: '10px',
-    display: 'flex',
+    display: FLEX,
     textAlign: 'center',
     alignItems: 'center',
     justifyContent: 'center',
@@ -43,13 +46,13 @@ export default function page ({
   }
   const textStyles = { fontFamily: 'cinzel', color: primaryColor }
   const statsStyles = {
-    display: 'flex',
+    display: FLEX,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     gap: '.5rem',
     '@media (max-width: 1000px)': {
-      display: 'flex',
+      display: FLEX,
       flexDirection: 'column'
     }
   }
@@ -65,33 +68,26 @@ export default function page ({
   return isLoading
     ? (
     <Box
-      sx={{
-        display: 'flex',
-        alignContent: 'center',
-        justifyContent: 'center',
-        alignItems: 'center',
+      sx={[FLEX_COLUMN_CENTER, {
         width: '100%',
         height: '100%',
         '@media (max-width: 1000px)': {
           height: '100px',
           backgroundColor: '#171717'
-
         }
-      }}
+      }]}
     >
       <CircularProgress />
     </Box>
       )
     : (
     <Box
-      sx={{
+      sx={[FLEX_COLUMN_CENTER, {
         width: '100%',
         height: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
         backgroundColor: '#171717'
-      }}
+      }
+      ]}
     >
       <Box
         sx={{
@@ -103,7 +99,7 @@ export default function page ({
           '@media (max-width: 1000px)': {
             width: '90%',
             height: '90%',
-            gridTemplateColumns: 'none',
+            gridTemplateColumns: NONE,
             gridTemplateRows: '300px 200px 100px',
             gridAutoFlow: 'row',
             gap: '1rem',
@@ -118,11 +114,11 @@ export default function page ({
           sx={{
             width: '100%',
             height: '100%',
-            display: 'flex',
+            display: FLEX,
             flexDirection: 'column',
             gap: '1rem',
             '@media (max-width: 1000px)': {
-              display: 'flex',
+              display: FLEX,
               flexDirection: 'row'
             },
             '@media (max-width: 550px)': {
@@ -148,28 +144,23 @@ export default function page ({
             </Typography>
           </Box>
           <Box
-            sx={{
+            sx={[FLEX_COLUMN_CENTER, {
               backgroundColor: '#0a0a0a',
               width: '100%',
               height: '80%',
               borderRadius: '10px',
-              display: 'flex',
-              textAlign: 'center',
-              alignItems: 'center',
-              justifyContent: 'center',
-              flexDirection: 'column',
               '@media (max-width: 1000px)': {
                 height: '100%'
               }
 
-            }}
+            }]}
           >
             <Typography sx={{ fontFamily: 'cinzel', color: primaryColor }}>
               Player Stats
             </Typography>
             <List sx={{
               '@media (max-width: 1000px)': {
-                display: 'flex',
+                display: FLEX,
                 flexDirection: 'row'
               }
             }}>
@@ -227,25 +218,21 @@ export default function page ({
           </Box>
         </Box>
         <Box
-          sx={{
-            width: '100%',
-            height: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '1rem'
-          }}
+          sx={[FLEX_COLUMN,
+            {
+              width: '100%',
+              height: '100%',
+              gap: '1rem'
+            }
+          ]}
         >
           <Box
-            sx={[
+            sx={[FLEX_COLUMN_CENTER,
               {
                 backgroundColor: '#0a0a0a',
                 width: '100%',
                 height: '40%',
-                display: 'flex',
-                flexDirection: 'column',
                 borderRadius: '10px',
-                alignItems: 'center',
-                justifyContent: 'center',
                 gap: '1rem',
                 '@media (max-width: 1000px)': {
                   flexDirection: 'row'
@@ -275,13 +262,10 @@ export default function page ({
               src={datos?.image}
             />
             <Box
-              sx={[
+              sx={[FLEX_COLUMN_CENTER,
                 {
                   position: 'absolute',
-                  display: 'flex',
-                  alignContent: 'center',
-                  justifyContent: 'center',
-                  flexDirection: 'column',
+
                   textAlign: 'center',
                   marginTop: '2.5rem',
                   '@media (max-width: 1000px)': {
@@ -317,7 +301,7 @@ export default function page ({
                 backgroundColor: '#0a0a0a',
                 width: '100%',
                 height: '60%',
-                display: 'flex',
+                display: FLEX,
                 borderRadius: '10px',
                 alignItems: 'center',
                 justifyContent: 'center',
