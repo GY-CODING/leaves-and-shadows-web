@@ -283,7 +283,7 @@ export default function page ({
                   justifyContent: 'center',
                   flexDirection: 'column',
                   textAlign: 'center',
-                  marginTop: '2rem',
+                  marginTop: '2.5rem',
                   '@media (max-width: 1000px)': {
                     position: 'static',
                     marginTop: '0'
