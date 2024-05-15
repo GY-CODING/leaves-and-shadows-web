@@ -72,7 +72,7 @@ export default function Characters (): JSX.Element {
       } else {
         return characters
           .filter((character: any) =>
-            character.name
+            character.identifier
               .toLowerCase()
               .startsWith(characterName.toLowerCase())
           )
