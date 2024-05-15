@@ -78,3 +78,56 @@ export const def = keyframes`
   opacity: 1;
 
 }`
+
+export function returnPrimaryColorByWorld (world?: string): string {
+  switch (world) {
+    case 'asgard':
+      return '#fde68a'
+    case 'midgard':
+      return '#f97316'
+    case 'niflheim':
+      return '#082f49'
+    case 'vanaheim':
+      return '#22c55e'
+    case 'jotunheim':
+      return '#22d3ee'
+    case 'alfheim':
+      return '#ec4899'
+    case 'svartalfheim':
+      return '#a8a29e'
+    case 'helheim':
+      return '#2dd4bf'
+    case 'muspelheim':
+      return '#ef4444'
+    case 'ginnungagap':
+      return '#9333ea'
+    default:
+      return 'white'
+  }
+}
+export function returnSecondaryColorByWorld (world?: string): string {
+  switch (world) {
+    case 'asgard':
+      return '#fef3c7'
+    case 'midgard':
+      return '#fdba74'
+    case 'niflheim':
+      return '#0369a1'
+    case 'vanaheim':
+      return '#86efac'
+    case 'jotunheim':
+      return '#a5f3fc'
+    case 'alfheim':
+      return '#f9a8d4'
+    case 'svartalfheim':
+      return '#d6d3d1'
+    case 'helheim':
+      return '#5eead4'
+    case 'muspelheim':
+      return '#f87171'
+    case 'ginnungagap':
+      return '#e879f9'
+    default:
+      return 'white'
+  }
+}

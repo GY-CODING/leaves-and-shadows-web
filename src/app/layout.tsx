@@ -22,7 +22,7 @@ export default async function RootLayout ({
       <head>
         <link rel="icon" href="/leaves_and_shadows.ico" />
       </head>
-      <body className="w-screen h-screen bg-zinc-950 flex flex-col items-center overflow-hidden">
+      <body className="w-screen h-screen bg-zinc-950 flex flex-col items-center overflow-x-hidden">
         <Provider session={session}>{children}</Provider>
       </body>
     </html>

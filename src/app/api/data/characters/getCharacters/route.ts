@@ -10,7 +10,6 @@ export async function GET (_req: any, _res: any): Promise<NextResponse> {
     {
       method: 'GET',
       mode: 'cors'
-
     }
   )
   const data = await response.json()

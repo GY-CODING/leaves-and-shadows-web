@@ -4,14 +4,16 @@ import Link from 'next/link'
 import React, { useState } from 'react'
 
 interface characterProps {
+  imagen: string
   name: string
   world: string
-  imagen: string
+  identifier: string
 }
 export default function CharacterCard ({
+  imagen,
   name,
   world,
-  imagen
+  identifier
 }: characterProps): JSX.Element {
   const [isClicked, setIsClicked] = useState<boolean>(false)
 
@@ -30,7 +32,7 @@ export default function CharacterCard ({
         setIsClicked(false)
       }}
       id={`${name} characters`}
-      data-value={world.toLowerCase()}
+      data-value={world?.toLowerCase()}
     >
       <Box
         component="img"
@@ -97,7 +99,12 @@ export default function CharacterCard ({
           </Typography>
           <Typography
             variant="h6"
-            sx={{ fontFamily: 'cinzel', color: 'white', fontSize: '13px', cursor: 'pointer' }}
+            sx={{
+              fontFamily: 'cinzel',
+              color: 'white',
+              fontSize: '13px',
+              cursor: 'pointer'
+            }}
           >
             {world}
           </Typography>
@@ -130,10 +137,20 @@ export default function CharacterCard ({
             sx={{
               fontFamily: 'cinzel',
               fontSize: '13px',
-              color: 'inherit'
+              color: 'inherit',
+              width: '100%',
+              height: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
             }}
           >
-            <Link href={`/dashboard/characters/${name.toLowerCase()}`}>Explorar</Link>
+            <Link
+              className="w-full h-full flex items-center justify-center text-center content-center"
+              href={`/dashboard/characters/${identifier?.toLowerCase()}`}
+            >
+              Explorar
+            </Link>
           </Typography>
         </Box>
       </Box>

@@ -63,9 +63,10 @@ export default function Characters (): JSX.Element {
         return characters.map((character: any) => (
           <CharacterCard
             key={character.identifier}
+            imagen={character.image}
             name={character.name}
             world={character.world}
-            imagen={character.image}
+            identifier={character.identifier}
           />
         ))
       } else {
@@ -78,9 +79,10 @@ export default function Characters (): JSX.Element {
           .map((filteredCharacter: any) => (
             <CharacterCard
               key={filteredCharacter.identifier}
+              imagen={filteredCharacter.image}
               name={filteredCharacter.name}
               world={filteredCharacter.world}
-              imagen={filteredCharacter.image}
+              identifier= {filteredCharacter.identifier}
             />
           ))
       }
