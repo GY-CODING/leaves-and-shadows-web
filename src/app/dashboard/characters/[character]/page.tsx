@@ -168,7 +168,7 @@ export default function page ({
               }
             }}>
               <ListItem sx={statsStyles}>
-                <Image src={LIFE_ICON} width={20} height={20} alt={''}></Image>
+                <Image src={LIFE_ICON} width={20} height={20} alt={'LIFE_ICON'}></Image>
                 <Typography sx={textStyles}>{datos?.stats.life}</Typography>
               </ListItem>
               <ListItem sx={statsStyles}>
@@ -176,7 +176,7 @@ export default function page ({
                   src={DAMAGE_ICON}
                   width={20}
                   height={20}
-                  alt={''}
+                  alt={'DAMAGE_ICON'}
                 ></Image>
                 <Typography sx={textStyles}>{datos?.stats.attack}</Typography>
               </ListItem>
@@ -185,7 +185,7 @@ export default function page ({
                   src={ACCURACY_ICON}
                   width={20}
                   height={20}
-                  alt={''}
+                  alt={'ACCURACY_ICON'}
                 ></Image>
                 <Typography sx={textStyles}>
                   {datos?.stats.accuracy}
@@ -196,14 +196,14 @@ export default function page ({
                   src={DEFENSE_ICON}
                   width={20}
                   height={20}
-                  alt={''}
+                  alt={'DEFENSE_ICON'}
                 ></Image>
                 <Typography sx={textStyles}>
                   {datos?.stats.defense}
                 </Typography>
               </ListItem>
               <ListItem sx={statsStyles}>
-                <Image src={ETHER_ICON} width={20} height={20} alt={''}></Image>
+                <Image src={ETHER_ICON} width={20} height={20} alt={'ETHER_ICON'}></Image>
                 <Typography sx={textStyles}>{datos?.stats.ether}</Typography>
               </ListItem>
               <ListItem sx={statsStyles}>
@@ -211,7 +211,7 @@ export default function page ({
                   src={MOVEMENT_ICON}
                   width={20}
                   height={20}
-                  alt={''}
+                  alt={'MOVEMENT_ICON'}
                 ></Image>
                 <Typography sx={textStyles}>
                   {datos?.stats.movement}
@@ -324,6 +324,7 @@ export default function page ({
                 filter: 'brightness(.3) grayscale(100%)'
               }}
               component={'img'}
+              alt={`CHARACTER_IMAGE_${datos?.name.toUpperCase()}`}
               src={datos?.image}
             ></Box>
             <Typography
@@ -365,7 +366,7 @@ export default function page ({
             backgroundPosition: '67.4897% 14.6444%',
             filter: 'brightness(.3) grayscale(100%)',
             borderRadius: '10px'
-          }} component='img' src={returnImageWorld(datos?.world?.toUpperCase() ?? '')}/>
+          }} component='img' alt='WORLD_IMAGE' src={returnImageWorld(datos?.world?.toUpperCase() ?? '')}/>
 
           <Typography sx={{
             fontFamily: 'cinzel',
@@ -391,7 +392,7 @@ export default function page ({
             '@media (max-width: 1000px)': {
               display: 'none'
             }
-          }} component='img' src={returnWorldIcon(datos?.world?.toUpperCase() ?? '')}/>
+          }} component='img' alt='WORLD_ICON' src={returnWorldIcon(datos?.world?.toUpperCase() ?? '')}/>
         </Box>
       </Box>
     </Box>
