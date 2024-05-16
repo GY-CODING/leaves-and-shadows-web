@@ -129,7 +129,7 @@ export default function CharacterCard ({
               height: '100%',
               position: 'static',
               animation: `${def} .33s ease-out forwards`,
-              width: isClicked ? '30%' : '25%',
+              width: isClicked ? '35%' : '30%',
               transition: 'all 0.5s'
             }
           }}
@@ -143,7 +143,10 @@ export default function CharacterCard ({
               height: '100%',
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center'
+              justifyContent: 'center',
+              '@media (max-width: 640px)': {
+                fontSize: '10px'
+              }
             }}
           >
             <Link
