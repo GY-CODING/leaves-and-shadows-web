@@ -39,16 +39,16 @@ export const HELHEIM_ICON = 'https://raw.githubusercontent.com/GY-CODING/img-rep
 export const NIFLHEIM_ICON = 'https://raw.githubusercontent.com/GY-CODING/img-repo/main/fall-of-the-gods/worlds/icons/niflheim-detailed-icon.webp'
 export const GINNUNGAGAP_ICON = 'https://raw.githubusercontent.com/GY-CODING/img-repo/main/fall-of-the-gods/worlds/icons/ginnungagap-detailed-icon.webp'
 // WORLD IMG
-export const ASGARD_IMG = 'https://raw.githubusercontent.com/GY-CODING/img-repo/main/fall-of-the-gods/worlds/universe_asgard.webp'
-export const MIDGARD_IMG = 'https://raw.githubusercontent.com/GY-CODING/img-repo/main/fall-of-the-gods/worlds/universe_midgard.webp'
-export const ALFHEIM_IMG = 'https://raw.githubusercontent.com/GY-CODING/img-repo/main/fall-of-the-gods/worlds/universe_alfheim.webp'
-export const VANAHEIM_IMG = 'https://raw.githubusercontent.com/GY-CODING/img-repo/main/fall-of-the-gods/worlds/universe_vanaheim.webp'
-export const SVARTALFHEIM_IMG = 'https://raw.githubusercontent.com/GY-CODING/img-repo/main/fall-of-the-gods/worlds/universe_svartalfheim.webp'
-export const JOTUNHEIM_IMG = 'https://raw.githubusercontent.com/GY-CODING/img-repo/main/fall-of-the-gods/worlds/universe_jotunheim.webp'
-export const MUSPELHEIM_IMG = 'https://raw.githubusercontent.com/GY-CODING/img-repo/main/fall-of-the-gods/worlds/universe_muspelheim.webp'
-export const HELHEIM_IMG = 'https://raw.githubusercontent.com/GY-CODING/img-repo/main/fall-of-the-gods/worlds/universe_helheim.webp'
-export const NIFLHEIM_IMG = 'https://raw.githubusercontent.com/GY-CODING/img-repo/main/fall-of-the-gods/worlds/universe_niflheim.webp'
-export const GINNUNGAGAP_IMG = 'https://raw.githubusercontent.com/GY-CODING/img-repo/main/fall-of-the-gods/worlds/universe_ginnungagap.webp'
+export const ASGARD_IMG = 'https://raw.githubusercontent.com/GY-CODING/img-repo/main/fall-of-the-gods/worlds/world_asgard.webp'
+export const MIDGARD_IMG = 'https://raw.githubusercontent.com/GY-CODING/img-repo/main/fall-of-the-gods/worlds/world_midgard.webp'
+export const ALFHEIM_IMG = 'https://raw.githubusercontent.com/GY-CODING/img-repo/main/fall-of-the-gods/worlds/world_alfheim.webp'
+export const VANAHEIM_IMG = 'https://raw.githubusercontent.com/GY-CODING/img-repo/main/fall-of-the-gods/worlds/world_vanaheim.webp'
+export const SVARTALFHEIM_IMG = 'https://raw.githubusercontent.com/GY-CODING/img-repo/main/fall-of-the-gods/worlds/world_svartalfheim.webp'
+export const JOTUNHEIM_IMG = 'https://raw.githubusercontent.com/GY-CODING/img-repo/main/fall-of-the-gods/worlds/world_jotunheim.webp'
+export const MUSPELHEIM_IMG = 'https://raw.githubusercontent.com/GY-CODING/img-repo/main/fall-of-the-gods/worlds/world_muspelheim.webp'
+export const HELHEIM_IMG = 'https://raw.githubusercontent.com/GY-CODING/img-repo/main/fall-of-the-gods/worlds/world_helheim.webp'
+export const NIFLHEIM_IMG = 'https://raw.githubusercontent.com/GY-CODING/img-repo/main/fall-of-the-gods/worlds/world_niflheim.webp'
+export const GINNUNGAGAP_IMG = 'https://raw.githubusercontent.com/GY-CODING/img-repo/main/fall-of-the-gods/worlds/world_ginnungagap.webp'
 
 // CLASSIC STYLES
 export const FLEX_ROW_CENTER = { display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }
