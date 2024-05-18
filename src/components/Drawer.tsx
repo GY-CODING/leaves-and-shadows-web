@@ -16,7 +16,7 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 import CloseIcon from '@mui/icons-material/Close'
 
 import React from 'react'
-import { useSession } from 'next-auth/react'
+import { useUser } from '@auth0/nextjs-auth0/client'
 
 interface TemporaryDrawerProps {
   logout: () => void
@@ -31,9 +31,8 @@ export default function TemporaryDrawer ({
   logout
 }: TemporaryDrawerProps): JSX.Element {
   const [open, setOpen] = React.useState(false)
-  const { data: session } = useSession()
   const theme = useTheme()
-
+  const { user } = useUser()
   const isMobileDevice = useMediaQuery(theme.breakpoints.down('sm'))
 
   const toggleDrawer = (newOpen: boolean) => () => {
@@ -80,8 +79,8 @@ export default function TemporaryDrawer ({
       >
         <ThemeProvider theme={darkTheme}>
           <Avatar
-            alt={session?.user?.name ?? ''}
-            src={session?.user?.image ?? ''}
+            alt={user?.nickname ?? ''}
+            src={user?.picture ?? ''}
             sx={{ width: '100px', height: '100px' }}
           />
           <Typography
@@ -101,8 +100,8 @@ export default function TemporaryDrawer ({
             fullWidth
             variant="outlined"
             sx={{ width: '90%' }}
-            defaultValue={session?.user?.name ?? 'No session'}
-            value={session?.user?.name ?? 'No session'}
+            defaultValue={user?.nickname ?? 'No session'}
+            value={user?.nickname ?? 'No session'}
           />
           <TextField
             id="email"
@@ -114,8 +113,8 @@ export default function TemporaryDrawer ({
             fullWidth
             variant="outlined"
             sx={{ width: '90%' }}
-            defaultValue={session?.user?.email ?? 'No session'}
-            value={session?.user?.email ?? 'No session'}
+            defaultValue={user?.email ?? 'No session'}
+            value={user?.email ?? 'No session'}
             type="email"
           />
         </ThemeProvider>
@@ -158,12 +157,12 @@ export default function TemporaryDrawer ({
         startIcon={
           <Avatar
             sx={{ width: 24, height: 24 }}
-            alt={session?.user?.name?.toString()}
-            src={session?.user?.image?.toString()}
+            alt={user?.nickname?.toString()}
+            src={user?.picture?.toString()}
           />
         }
       >
-        {session?.user?.name?.toString().split(' ')[0] ?? ''}
+        {user?.nickname}
       </Button>
       <Drawer anchor="right" open={open} onClose={toggleDrawer(false)}>
         {DrawerList}
