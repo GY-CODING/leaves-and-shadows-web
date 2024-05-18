@@ -62,7 +62,6 @@ export default function page ({
     async function fetchCharacter (): Promise<void> {
       const characterFetched = await getCharacter(character)
       setdatos(characterFetched)
-      console.log(characterFetched)
       setIsLoading(false)
     }
     void fetchCharacter()
