@@ -9,19 +9,23 @@ import Image from 'next/image'
 import logo from '../../assets/images/leaves_and_shadows.png'
 import { useRouter, usePathname } from 'next/navigation'
 import TemporaryDrawer from '@/components/Drawer'
-import { useSession, signOut } from 'next-auth/react'
+import { useUser } from '@auth0/nextjs-auth0/client'
+import { handleLogout } from '@auth0/nextjs-auth0'
 
 export default function Layout ({
   children
 }: Readonly<{ children: React.ReactNode }>): JSX.Element {
   const router = useRouter()
   const pathname = usePathname()
-  const { data: session } = useSession()
+  const session = true
   const [layout, setLayout] = React.useState('')
+  const { user } = useUser()
+  console.log(user)
 
   function pushToDashboard (): void {
     if (pathname !== '/dashboard') {
       router.push('/dashboard/')
+      handleLogout()
     }
   }
 
@@ -38,8 +42,7 @@ export default function Layout ({
   }, [pathname, session])
 
   async function handleSignOut (): Promise<void> {
-    await signOut()
-    router.push('/dashboard')
+    router.push('/api/auth/logout')
   }
 
   return (
@@ -70,7 +73,7 @@ export default function Layout ({
           </div>
         </ul>
         <div className="w-full md:w-1/2 h-full flex flex-row items-center justify-center md:justify-end sm:pr-4 gap-4">
-          {session
+          {user
             ? (
             <>
               <TemporaryDrawer logout={handleSignOut} />
@@ -79,7 +82,7 @@ export default function Layout ({
             : (
             <button className="w-40 h-12 rounded bg-zinc-950 flex text-white">
               <Link
-                href={layout === 'Login' ? '/dashboard/login' : '/dashboard'}
+                href={layout === 'Login' ? '/api/auth/login' : '/dashboard'}
                 className={`${cinzel.className} text-green-40 0bg-zinc-950 hover:bg-green-500 hover:text-white w-full h-full rounded text-center items-center justify-center flex transition duration-500 ease-in-out`}
               >
                 {layout || 'Login'}
