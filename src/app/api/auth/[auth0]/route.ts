@@ -1,2 +1,2 @@
-import auth from './auth'
-export const GET = auth.handleAuth()
+import authConfig from '@/lib/authConfig'
+export const GET = authConfig.handleAuth()
