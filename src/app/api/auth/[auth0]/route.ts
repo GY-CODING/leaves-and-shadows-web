@@ -1,3 +1,2 @@
-import { handleAuth } from '@auth0/nextjs-auth0'
-
-export const GET = handleAuth()
+import auth from './auth'
+export const GET = auth.handleAuth()
