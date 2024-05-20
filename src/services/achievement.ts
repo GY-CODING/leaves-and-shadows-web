@@ -16,6 +16,6 @@ export async function getAchievements (): Promise<Achievement[]> {
     return achievements
   } catch (error) {
     console.error('Error en getAchievements:', error)
-    throw error
+    return []
   }
 }
