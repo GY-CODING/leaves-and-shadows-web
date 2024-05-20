@@ -1,2 +1,3 @@
-import authConfig from '@/lib/authConfig'
-export const GET = authConfig.handleAuth()
+import { handleAuth } from '@auth0/nextjs-auth0'
+
+export default handleAuth()

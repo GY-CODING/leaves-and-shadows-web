@@ -20,7 +20,6 @@ export default function Layout ({
   const session = true
   const [layout, setLayout] = React.useState('')
   const { user } = useUser()
-  console.log(user)
 
   function pushToDashboard (): void {
     if (pathname !== '/dashboard') {
