@@ -14,9 +14,11 @@ import {
 } from '@mui/material'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import CloseIcon from '@mui/icons-material/Close'
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents'
 
 import React from 'react'
 import { useUser } from '@auth0/nextjs-auth0/client'
+import Link from 'next/link'
 
 interface TemporaryDrawerProps {
   logout: () => void
@@ -34,7 +36,6 @@ export default function TemporaryDrawer ({
   const theme = useTheme()
   const { user } = useUser()
   const isMobileDevice = useMediaQuery(theme.breakpoints.down('sm'))
-
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen)
   }
@@ -117,6 +118,27 @@ export default function TemporaryDrawer ({
             value={user?.email ?? 'No session'}
             type="email"
           />
+          <Button startIcon={<EmojiEventsIcon sx={{ position: 'relative' }} />}
+          onClick={toggleDrawer(false)}
+          sx={{
+            width: '90%',
+            height: '56px',
+            fontFamily: cinzel.className,
+            color: 'white',
+            backgroundColor: '#27272a',
+            textAlign: 'center',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            '&:hover': {
+              backgroundColor: '#22c55e',
+              color: 'white',
+              transitionDuration: '500ms'
+            }
+          }}
+          >
+            <Link className='w-10/12 h-full text-center flex items-center justify-center' href="/dashboard/achievements">Achievements</Link>
+          </Button>
         </ThemeProvider>
       </FormControl>
 
@@ -152,7 +174,8 @@ export default function TemporaryDrawer ({
           borderRadius: 'rounded',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'space-evenly'
+          justifyContent: 'space-evenly',
+          marginRight: '1rem'
         }}
         startIcon={
           <Avatar

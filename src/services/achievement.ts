@@ -3,7 +3,7 @@ import { achievementsFromDto } from '@/mappers/achievements.mapper'
 
 export async function getAchievements (): Promise<Achievement[]> {
   try {
-    const response = await fetch('/api/data/getAchievements', {
+    const response = await fetch('/api/data/achievements', {
       method: 'GET'
     })
 

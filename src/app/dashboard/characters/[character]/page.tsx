@@ -1,7 +1,6 @@
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 'use client'
-import React, { useEffect } from 'react'
-import { getCharacter } from '@/services/character'
-import { type Character } from '@/domain/character'
+import React from 'react'
 import CircularProgress from '@mui/material/CircularProgress'
 import { Box, List, ListItem, Typography } from '@mui/material'
 import Image from 'next/image'
@@ -18,22 +17,20 @@ import {
   NONE
 } from '@/utils/global.constants'
 import {
-  returnImageWorld,
   returnPrimaryColorByWorld,
-  returnSecondaryColorByWorld,
-  returnWorldIcon
+  returnSecondaryColorByWorld
 } from '@/utils/functions'
-
+import { useCharacterWorld } from '@/hooks/useCharacterWorld'
 export default function page ({
   params
 }: {
   params: { character: string }
 }): JSX.Element {
   const { character } = params
-  const [isLoading, setIsLoading] = React.useState(true)
-  const [datos, setdatos] = React.useState<Character>()
-  const primaryColor = returnPrimaryColorByWorld(datos?.world)
-  const secondaryColor = returnSecondaryColorByWorld(datos?.world)
+  const parametros: string[] = character.split('-')
+  const { data, isLoading, isValidating, world, isLoadingWorld, isValidatingWorld } = useCharacterWorld(parametros[0], parametros[1])
+  const primaryColor = returnPrimaryColorByWorld(isLoading ? '' : data.world)
+  const secondaryColor = returnSecondaryColorByWorld(isLoading ? '' : data.world)
 
   const boxTextStyles = {
     width: '100%',
@@ -58,22 +55,12 @@ export default function page ({
       flexDirection: 'column'
     }
   }
-  useEffect(() => {
-    async function fetchCharacter (): Promise<void> {
-      const characterFetched = await getCharacter(character)
-      setdatos(characterFetched)
-      console.log(characterFetched)
-      setIsLoading(false)
-    }
-    void fetchCharacter()
-  }, [])
-
-  return isLoading
-    ? (
-    <Box
+  if (isLoading || isValidating || isLoadingWorld || isValidatingWorld) {
+    return (
+      <Box
       sx={[FLEX_COLUMN_CENTER, {
         width: '100%',
-        height: '100%',
+        height: '90vh',
         '@media (max-width: 1000px)': {
           height: '100px',
           backgroundColor: '#171717'
@@ -82,12 +69,14 @@ export default function page ({
     >
       <CircularProgress />
     </Box>
-      )
-    : (
+    )
+  }
+
+  return (
     <Box
       sx={[FLEX_COLUMN_CENTER, {
         width: '100%',
-        height: '100%',
+        height: '90vh',
         backgroundColor: '#171717'
       }
       ]}
@@ -143,7 +132,7 @@ export default function page ({
               {'RAZA'}
             </Typography>
             <Typography sx={{ fontFamily: 'cinzel', color: secondaryColor }}>
-              {datos?.race}
+              {data.race}
             </Typography>
           </Box>
           <Box
@@ -169,7 +158,7 @@ export default function page ({
             }}>
               <ListItem sx={statsStyles}>
                 <Image src={LIFE_ICON} width={20} height={20} alt={'LIFE_ICON'}></Image>
-                <Typography sx={textStyles}>{datos?.stats.life}</Typography>
+                <Typography sx={textStyles}>{data.stats.life}</Typography>
               </ListItem>
               <ListItem sx={statsStyles}>
                 <Image
@@ -178,7 +167,7 @@ export default function page ({
                   height={20}
                   alt={'DAMAGE_ICON'}
                 ></Image>
-                <Typography sx={textStyles}>{datos?.stats.attack}</Typography>
+                <Typography sx={textStyles}>{data.stats.attack}</Typography>
               </ListItem>
               <ListItem sx={statsStyles}>
                 <Image
@@ -188,7 +177,7 @@ export default function page ({
                   alt={'ACCURACY_ICON'}
                 ></Image>
                 <Typography sx={textStyles}>
-                  {datos?.stats.accuracy}
+                  {data.stats.accuracy}
                 </Typography>
               </ListItem>
               <ListItem sx={statsStyles}>
@@ -199,12 +188,12 @@ export default function page ({
                   alt={'DEFENSE_ICON'}
                 ></Image>
                 <Typography sx={textStyles}>
-                  {datos?.stats.defense}
+                  {data.stats.defense}
                 </Typography>
               </ListItem>
               <ListItem sx={statsStyles}>
                 <Image src={ETHER_ICON} width={20} height={20} alt={'ETHER_ICON'}></Image>
-                <Typography sx={textStyles}>{datos?.stats.ether}</Typography>
+                <Typography sx={textStyles}>{data.stats.ether}</Typography>
               </ListItem>
               <ListItem sx={statsStyles}>
                 <Image
@@ -214,7 +203,7 @@ export default function page ({
                   alt={'MOVEMENT_ICON'}
                 ></Image>
                 <Typography sx={textStyles}>
-                  {datos?.stats.movement}
+                  {data.stats.movement}
                 </Typography>
               </ListItem>
             </List>
@@ -261,8 +250,8 @@ export default function page ({
                   height: '75px'
                 }
               }}
-              alt={datos?.image}
-              src={datos?.image}
+              alt={data.image}
+              src={data.image}
             />
             <Box
               sx={[FLEX_COLUMN_CENTER,
@@ -286,7 +275,7 @@ export default function page ({
                   fontWeight: 'bold'
                 }}
               >
-                {datos?.name.toUpperCase()}
+                {data.name.toUpperCase()}
               </Typography>
               <Typography
                 variant="h6"
@@ -295,7 +284,7 @@ export default function page ({
                   color: secondaryColor,
                   fontSize: '16px'
                 }}
-              >{`"${datos?.title}"`}</Typography>
+              >{`"${data.title}"`}</Typography>
             </Box>
           </Box>
           <Box
@@ -324,8 +313,8 @@ export default function page ({
                 filter: 'brightness(.3) grayscale(100%)'
               }}
               component={'img'}
-              alt={`CHARACTER_IMAGE_${datos?.name.toUpperCase()}`}
-              src={datos?.image}
+              alt={`CHARACTER_IMAGE_${data.name.toUpperCase()}`}
+              src={data.image}
             ></Box>
             <Typography
               sx={{
@@ -338,7 +327,7 @@ export default function page ({
                   fontSize: '12px'
                 }
               }}
-            >{`"${datos?.description}"`}</Typography>
+            >{`"${data.description}"`}</Typography>
           </Box>
         </Box>
         <Box
@@ -366,7 +355,7 @@ export default function page ({
             backgroundPosition: '67.4897% 14.6444%',
             filter: 'brightness(.3) grayscale(100%)',
             borderRadius: '10px'
-          }} component='img' alt='WORLD_IMAGE' src={returnImageWorld(datos?.world?.toUpperCase() ?? '')}/>
+          }} component='img' alt='WORLD_IMAGE' src={world.image}/>
 
           <Typography sx={{
             fontFamily: 'cinzel',
@@ -384,7 +373,7 @@ export default function page ({
               fontSize: '12px'
             }
           }}>
-            {datos?.world.toUpperCase()}
+            {world.name.toUpperCase()}
           </Typography>
           <Box sx={{
             marginTop: '10%',
@@ -392,9 +381,9 @@ export default function page ({
             '@media (max-width: 1000px)': {
               display: 'none'
             }
-          }} component='img' alt='WORLD_ICON' src={returnWorldIcon(datos?.world?.toUpperCase() ?? '')}/>
+          }} component='img' alt='WORLD_ICON' src={world.detailedIcon}/>
         </Box>
       </Box>
     </Box>
-      )
+  )
 }

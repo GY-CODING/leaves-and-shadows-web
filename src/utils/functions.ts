@@ -1,5 +1,4 @@
 import { keyframes } from '@emotion/react'
-import { ALFHEIM, ALFHEIM_ICON, ALFHEIM_IMG, ASGARD, ASGARD_ICON, ASGARD_IMG, GINNUNGAGAP, GINNUNGAGAP_ICON, GINNUNGAGAP_IMG, HELHEIM, HELHEIM_ICON, HELHEIM_IMG, JOTUNHEIM, JOTUNHEIM_ICON, JOTUNHEIM_IMG, MIDGARD, MIDGARD_ICON, MIDGARD_IMG, MUSPELHEIM, MUSPELHEIM_ICON, MUSPELHEIM_IMG, NIFLHEIM, NIFLHEIM_ICON, NIFLHEIM_IMG, SVARTALFHEIM, SVARTALFHEIM_ICON, SVARTALFHEIM_IMG, VANAHEIM, VANAHEIM_ICON, VANAHEIM_IMG } from './global.constants'
 
 export function returnColorWorld (mode: string, world: string): string {
   if (mode === 'TAILWIND') {
@@ -130,58 +129,5 @@ export function returnSecondaryColorByWorld (world?: string): string {
       return '#e879f9'
     default:
       return 'white'
-  }
-}
-export function returnImageWorld (world: string): string {
-  switch (world) {
-    case ASGARD:
-      return ASGARD_IMG
-    case MIDGARD:
-      return MIDGARD_IMG
-    case NIFLHEIM:
-      return NIFLHEIM_IMG
-    case VANAHEIM:
-      return VANAHEIM_IMG
-    case JOTUNHEIM:
-      return JOTUNHEIM_IMG
-    case ALFHEIM:
-      return ALFHEIM_IMG
-    case SVARTALFHEIM:
-      return SVARTALFHEIM_IMG
-    case MUSPELHEIM:
-      return MUSPELHEIM_IMG
-    case HELHEIM:
-      return HELHEIM_IMG
-    case GINNUNGAGAP:
-      return GINNUNGAGAP_IMG
-    default:
-      return ''
-  }
-}
-
-export function returnWorldIcon (world: string): string {
-  switch (world) {
-    case ASGARD:
-      return ASGARD_ICON
-    case MIDGARD:
-      return MIDGARD_ICON
-    case NIFLHEIM:
-      return NIFLHEIM_ICON
-    case VANAHEIM:
-      return VANAHEIM_ICON
-    case JOTUNHEIM:
-      return JOTUNHEIM_ICON
-    case ALFHEIM:
-      return ALFHEIM_ICON
-    case SVARTALFHEIM:
-      return SVARTALFHEIM_ICON
-    case MUSPELHEIM:
-      return MUSPELHEIM_ICON
-    case HELHEIM:
-      return HELHEIM_ICON
-    case GINNUNGAGAP:
-      return GINNUNGAGAP_ICON
-    default:
-      return ''
   }
 }

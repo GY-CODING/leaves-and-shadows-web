@@ -151,7 +151,7 @@ export default function CharacterCard ({
           >
             <Link
               className="w-full h-full flex items-center justify-center text-center content-center"
-              href={`/dashboard/characters/${identifier?.toLowerCase()}`}
+              href={`/dashboard/characters/${identifier?.toLowerCase()}-${world?.toLowerCase()}`}
             >
               Explorar
             </Link>

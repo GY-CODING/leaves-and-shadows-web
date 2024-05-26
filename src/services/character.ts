@@ -3,7 +3,7 @@ import { charactersFromDto } from '@/mappers/characters.mapper'
 
 export async function getCharacter (identifier: string): Promise<Character> {
   const response = await fetch(
-    `/api/data/characters/getCharacters?identifier=${identifier}`,
+    `/api/data/characters/character?identifier=${identifier}`,
     {
       method: 'GET',
       headers: {
@@ -17,5 +17,6 @@ export async function getCharacter (identifier: string): Promise<Character> {
     throw new Error('Error fetching characters')
   }
   const character = charactersFromDto(data)
+
   return character
 }
