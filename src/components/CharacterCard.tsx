@@ -1,22 +1,22 @@
-import { def, grow, returnColorWorld } from '@/utils/functions'
-import { SX } from '@/utils/global.constants'
-import { Box, Typography } from '@mui/material'
-import Link from 'next/link'
-import React, { useState } from 'react'
+import { def, grow, returnColorWorld } from '@/utils/functions';
+import { SX } from '@/utils/global.constants';
+import { Box, Typography } from '@mui/material';
+import Link from 'next/link';
+import React, { useState } from 'react';
 
 interface characterProps {
-  imagen: string
-  name: string
-  world: string
-  identifier: string
+  imagen: string;
+  name: string;
+  world: string;
+  identifier: string;
 }
-export default function CharacterCard ({
+export default function CharacterCard({
   imagen,
   name,
   world,
-  identifier
+  identifier,
 }: characterProps): JSX.Element {
-  const [isClicked, setIsClicked] = useState<boolean>(false)
+  const [isClicked, setIsClicked] = useState<boolean>(false);
 
   return (
     <div
@@ -24,13 +24,13 @@ export default function CharacterCard ({
         'character-li w-full h-14 sm:w-52 sm:h-80 relative flex-row flex sm:flex-col sm:items-center sm:justify-center hover:scale-105 transition-all border border-transparent duration-500 '
       }
       style={{
-        borderColor: isClicked ? returnColorWorld(SX, world) : 'transparent'
+        borderColor: isClicked ? returnColorWorld(SX, world) : 'transparent',
       }}
       onMouseEnter={() => {
-        setIsClicked(true)
+        setIsClicked(true);
       }}
       onMouseLeave={() => {
-        setIsClicked(false)
+        setIsClicked(false);
       }}
       id={`${name} characters`}
       data-value={world?.toLowerCase()}
@@ -44,8 +44,8 @@ export default function CharacterCard ({
           objectFit: 'cover',
           '@media (max-width: 640px)': {
             width: '30%',
-            flexDirection: 'row'
-          }
+            flexDirection: 'row',
+          },
         }}
         alt={name}
         src={imagen}
@@ -71,8 +71,8 @@ export default function CharacterCard ({
             height: '100%',
             width: '100%',
             border: `0px solid ${returnColorWorld(SX, world)}`,
-            flexDirection: 'row'
-          }
+            flexDirection: 'row',
+          },
         }}
       >
         <Box
@@ -84,8 +84,8 @@ export default function CharacterCard ({
             height: isClicked ? '60%' : '100%',
             '@media (max-width: 640px)': {
               height: isClicked ? '100%' : '100%',
-              width: '75%'
-            }
+              width: '75%',
+            },
           }}
         >
           <Typography
@@ -93,7 +93,7 @@ export default function CharacterCard ({
               fontFamily: 'cinzel',
               fontWeight: 'bold',
               color: returnColorWorld(SX, world),
-              cursor: 'pointer'
+              cursor: 'pointer',
             }}
           >
             {name}
@@ -104,7 +104,7 @@ export default function CharacterCard ({
               fontFamily: 'cinzel',
               color: 'white',
               fontSize: '13px',
-              cursor: 'pointer'
+              cursor: 'pointer',
             }}
           >
             {world}
@@ -130,8 +130,8 @@ export default function CharacterCard ({
               position: 'static',
               animation: `${def} .33s ease-out forwards`,
               width: isClicked ? '35%' : '30%',
-              transition: 'all 0.5s'
-            }
+              transition: 'all 0.5s',
+            },
           }}
         >
           <Typography
@@ -145,8 +145,8 @@ export default function CharacterCard ({
               alignItems: 'center',
               justifyContent: 'center',
               '@media (max-width: 640px)': {
-                fontSize: '10px'
-              }
+                fontSize: '10px',
+              },
             }}
           >
             <Link
@@ -159,5 +159,5 @@ export default function CharacterCard ({
         </Box>
       </Box>
     </div>
-  )
+  );
 }

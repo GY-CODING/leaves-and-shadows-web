@@ -1,27 +1,27 @@
-import { type World } from '@/domain/worlds'
-import { worldsFromDto } from '@/mappers/worlds.mapper'
+import { type World } from '@/domain/worlds';
+import { worldsFromDto } from '@/mappers/worlds.mapper';
 
-export async function getWorlds (): Promise<World[]> {
+export async function getWorlds(): Promise<World[]> {
   try {
     const response = await fetch('/api/data/worlds', {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    const data = await response.json()
+        'Content-Type': 'application/json',
+      },
+    });
+    const data = await response.json();
 
     if (!response.ok) {
-      throw new Error('Error fetching characters')
+      throw new Error('Error fetching characters');
     }
-    const worlds: World[] = []
+    const worlds: World[] = [];
     data.forEach((character: any) => {
-      worlds.push(worldsFromDto(worlds))
-    })
+      worlds.push(worldsFromDto(worlds));
+    });
 
-    return worlds
+    return worlds;
   } catch (error) {
-    console.error('Error en getWorlds:', error)
-    return []
+    console.error('Error en getWorlds:', error);
+    return [];
   }
 }

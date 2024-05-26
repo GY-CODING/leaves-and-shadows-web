@@ -1,16 +1,16 @@
-import { VscAccount } from 'react-icons/vsc'
-import { returnColorWorld } from '@/utils/functions'
+import { VscAccount } from 'react-icons/vsc';
+import { returnColorWorld } from '@/utils/functions';
 
-import React from 'react'
+import React from 'react';
 
-export function ButtonFilter ({
+export function ButtonFilter({
   setWorld,
   mundo,
-  currentWorld
+  currentWorld,
 }: {
-  setWorld: any
-  mundo: string
-  currentWorld: string
+  setWorld: any;
+  mundo: string;
+  currentWorld: string;
 }): JSX.Element {
   return (
     <button
@@ -20,23 +20,23 @@ export function ButtonFilter ({
         mundo.toLowerCase() === currentWorld
           ? {
               backgroundColor: returnColorWorld('SX', mundo.toLowerCase()),
-              color: 'black'
+              color: 'black',
             }
           : {}
       }
     >
       {mundo}
     </button>
-  )
+  );
 }
-export function ButtonDefault ({
+export function ButtonDefault({
   setWorld,
   mundo,
-  currentWorld
+  currentWorld,
 }: {
-  setWorld: any
-  mundo: string
-  currentWorld: string
+  setWorld: any;
+  mundo: string;
+  currentWorld: string;
 }): JSX.Element {
   return (
     <button
@@ -53,5 +53,5 @@ export function ButtonDefault ({
         }
       />
     </button>
-  )
+  );
 }

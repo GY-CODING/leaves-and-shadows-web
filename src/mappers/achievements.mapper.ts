@@ -1,4 +1,4 @@
-import { type Achievement } from '@/domain/achievement'
+import { type Achievement } from '@/domain/achievement';
 
 export const achievementsFromDto = (obj: any): Achievement => {
   const achievement: Achievement = {
@@ -7,7 +7,7 @@ export const achievementsFromDto = (obj: any): Achievement => {
     description: obj.description,
     image: obj.image,
     tier: obj.tier,
-    unlocked: obj.unlocked
-  }
-  return achievement
-}
+    unlocked: obj.unlocked,
+  };
+  return achievement;
+};

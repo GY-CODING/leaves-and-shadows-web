@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
-'use client'
-import React from 'react'
-import CircularProgress from '@mui/material/CircularProgress'
-import { Box, List, ListItem, Typography } from '@mui/material'
-import Image from 'next/image'
+'use client';
+import React from 'react';
+import CircularProgress from '@mui/material/CircularProgress';
+import { Box, List, ListItem, Typography } from '@mui/material';
+import Image from 'next/image';
 import {
   ACCURACY_ICON,
   DAMAGE_ICON,
@@ -14,23 +14,32 @@ import {
   FLEX_COLUMN_CENTER,
   LIFE_ICON,
   MOVEMENT_ICON,
-  NONE
-} from '@/utils/global.constants'
+  NONE,
+} from '@/utils/global.constants';
 import {
   returnPrimaryColorByWorld,
-  returnSecondaryColorByWorld
-} from '@/utils/functions'
-import { useCharacterWorld } from '@/hooks/useCharacterWorld'
-export default function page ({
-  params
+  returnSecondaryColorByWorld,
+} from '@/utils/functions';
+import { useCharacterWorld } from '@/hooks/useCharacterWorld';
+export default function page({
+  params,
 }: {
-  params: { character: string }
+  params: { character: string };
 }): JSX.Element {
-  const { character } = params
-  const parametros: string[] = character.split('-')
-  const { data, isLoading, isValidating, world, isLoadingWorld, isValidatingWorld } = useCharacterWorld(parametros[0], parametros[1])
-  const primaryColor = returnPrimaryColorByWorld(isLoading ? '' : data.world)
-  const secondaryColor = returnSecondaryColorByWorld(isLoading ? '' : data.world)
+  const { character } = params;
+  const parametros: string[] = character.split('-');
+  const {
+    data,
+    isLoading,
+    isValidating,
+    world,
+    isLoadingWorld,
+    isValidatingWorld,
+  } = useCharacterWorld(parametros[0], parametros[1]);
+  const primaryColor = returnPrimaryColorByWorld(isLoading ? '' : data.world);
+  const secondaryColor = returnSecondaryColorByWorld(
+    isLoading ? '' : data.world,
+  );
 
   const boxTextStyles = {
     width: '100%',
@@ -41,9 +50,9 @@ export default function page ({
     textAlign: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-    flexDirection: 'column'
-  }
-  const textStyles = { fontFamily: 'cinzel', color: primaryColor }
+    flexDirection: 'column',
+  };
+  const textStyles = { fontFamily: 'cinzel', color: primaryColor };
   const statsStyles = {
     display: FLEX,
     flexDirection: 'row',
@@ -52,33 +61,38 @@ export default function page ({
     gap: '.5rem',
     '@media (max-width: 1000px)': {
       display: FLEX,
-      flexDirection: 'column'
-    }
-  }
+      flexDirection: 'column',
+    },
+  };
   if (isLoading || isValidating || isLoadingWorld || isValidatingWorld) {
     return (
       <Box
-      sx={[FLEX_COLUMN_CENTER, {
-        width: '100%',
-        height: '90vh',
-        '@media (max-width: 1000px)': {
-          height: '100px',
-          backgroundColor: '#171717'
-        }
-      }]}
-    >
-      <CircularProgress />
-    </Box>
-    )
+        sx={[
+          FLEX_COLUMN_CENTER,
+          {
+            width: '100%',
+            height: '90vh',
+            '@media (max-width: 1000px)': {
+              height: '100px',
+              backgroundColor: '#171717',
+            },
+          },
+        ]}
+      >
+        <CircularProgress />
+      </Box>
+    );
   }
 
   return (
     <Box
-      sx={[FLEX_COLUMN_CENTER, {
-        width: '100%',
-        height: '90vh',
-        backgroundColor: '#171717'
-      }
+      sx={[
+        FLEX_COLUMN_CENTER,
+        {
+          width: '100%',
+          height: '90vh',
+          backgroundColor: '#171717',
+        },
       ]}
     >
       <Box
@@ -97,9 +111,8 @@ export default function page ({
             gap: '1rem',
             '> :nth-of-type(1)': { order: 2 },
             '> :nth-of-type(2)': { order: 1 },
-            '> :nth-of-type(3)': { order: 3 }
-
-          }
+            '> :nth-of-type(3)': { order: 3 },
+          },
         }}
       >
         <Box
@@ -111,23 +124,28 @@ export default function page ({
             gap: '1rem',
             '@media (max-width: 1000px)': {
               display: FLEX,
-              flexDirection: 'row'
+              flexDirection: 'row',
             },
             '@media (max-width: 550px)': {
-              flexDirection: 'column'
-            }
+              flexDirection: 'column',
+            },
           }}
         >
-          <Box sx={[boxTextStyles, {
-            '@media (max-width: 1000px)': {
-              height: '100%',
-              width: '50%'
-            },
-            '@media (max-width: 550px)': {
-              width: '100%',
-              height: '100%'
-            }
-          }]}>
+          <Box
+            sx={[
+              boxTextStyles,
+              {
+                '@media (max-width: 1000px)': {
+                  height: '100%',
+                  width: '50%',
+                },
+                '@media (max-width: 550px)': {
+                  width: '100%',
+                  height: '100%',
+                },
+              },
+            ]}
+          >
             <Typography sx={{ fontFamily: 'cinzel', color: primaryColor }}>
               {'RAZA'}
             </Typography>
@@ -136,28 +154,37 @@ export default function page ({
             </Typography>
           </Box>
           <Box
-            sx={[FLEX_COLUMN_CENTER, {
-              backgroundColor: '#0a0a0a',
-              width: '100%',
-              height: '80%',
-              borderRadius: '10px',
-              '@media (max-width: 1000px)': {
-                height: '100%'
-              }
-
-            }]}
+            sx={[
+              FLEX_COLUMN_CENTER,
+              {
+                backgroundColor: '#0a0a0a',
+                width: '100%',
+                height: '80%',
+                borderRadius: '10px',
+                '@media (max-width: 1000px)': {
+                  height: '100%',
+                },
+              },
+            ]}
           >
             <Typography sx={{ fontFamily: 'cinzel', color: primaryColor }}>
               Player Stats
             </Typography>
-            <List sx={{
-              '@media (max-width: 1000px)': {
-                display: FLEX,
-                flexDirection: 'row'
-              }
-            }}>
+            <List
+              sx={{
+                '@media (max-width: 1000px)': {
+                  display: FLEX,
+                  flexDirection: 'row',
+                },
+              }}
+            >
               <ListItem sx={statsStyles}>
-                <Image src={LIFE_ICON} width={20} height={20} alt={'LIFE_ICON'}></Image>
+                <Image
+                  src={LIFE_ICON}
+                  width={20}
+                  height={20}
+                  alt={'LIFE_ICON'}
+                ></Image>
                 <Typography sx={textStyles}>{data.stats.life}</Typography>
               </ListItem>
               <ListItem sx={statsStyles}>
@@ -176,9 +203,7 @@ export default function page ({
                   height={20}
                   alt={'ACCURACY_ICON'}
                 ></Image>
-                <Typography sx={textStyles}>
-                  {data.stats.accuracy}
-                </Typography>
+                <Typography sx={textStyles}>{data.stats.accuracy}</Typography>
               </ListItem>
               <ListItem sx={statsStyles}>
                 <Image
@@ -187,12 +212,15 @@ export default function page ({
                   height={20}
                   alt={'DEFENSE_ICON'}
                 ></Image>
-                <Typography sx={textStyles}>
-                  {data.stats.defense}
-                </Typography>
+                <Typography sx={textStyles}>{data.stats.defense}</Typography>
               </ListItem>
               <ListItem sx={statsStyles}>
-                <Image src={ETHER_ICON} width={20} height={20} alt={'ETHER_ICON'}></Image>
+                <Image
+                  src={ETHER_ICON}
+                  width={20}
+                  height={20}
+                  alt={'ETHER_ICON'}
+                ></Image>
                 <Typography sx={textStyles}>{data.stats.ether}</Typography>
               </ListItem>
               <ListItem sx={statsStyles}>
@@ -202,24 +230,24 @@ export default function page ({
                   height={20}
                   alt={'MOVEMENT_ICON'}
                 ></Image>
-                <Typography sx={textStyles}>
-                  {data.stats.movement}
-                </Typography>
+                <Typography sx={textStyles}>{data.stats.movement}</Typography>
               </ListItem>
             </List>
           </Box>
         </Box>
         <Box
-          sx={[FLEX_COLUMN,
+          sx={[
+            FLEX_COLUMN,
             {
               width: '100%',
               height: '100%',
-              gap: '1rem'
-            }
+              gap: '1rem',
+            },
           ]}
         >
           <Box
-            sx={[FLEX_COLUMN_CENTER,
+            sx={[
+              FLEX_COLUMN_CENTER,
               {
                 backgroundColor: '#0a0a0a',
                 width: '100%',
@@ -227,9 +255,9 @@ export default function page ({
                 borderRadius: '10px',
                 gap: '1rem',
                 '@media (max-width: 1000px)': {
-                  flexDirection: 'row'
-                }
-              }
+                  flexDirection: 'row',
+                },
+              },
             ]}
           >
             <Box
@@ -247,14 +275,15 @@ export default function page ({
                   top: 'initial',
                   flexDirection: 'row',
                   width: '75px',
-                  height: '75px'
-                }
+                  height: '75px',
+                },
               }}
               alt={data.image}
               src={data.image}
             />
             <Box
-              sx={[FLEX_COLUMN_CENTER,
+              sx={[
+                FLEX_COLUMN_CENTER,
                 {
                   position: 'absolute',
 
@@ -262,9 +291,9 @@ export default function page ({
                   marginTop: '2.5rem',
                   '@media (max-width: 1000px)': {
                     position: 'static',
-                    marginTop: '0'
-                  }
-                }
+                    marginTop: '0',
+                  },
+                },
               ]}
             >
               <Typography
@@ -272,7 +301,7 @@ export default function page ({
                 sx={{
                   fontFamily: 'cinzel',
                   color: primaryColor,
-                  fontWeight: 'bold'
+                  fontWeight: 'bold',
                 }}
               >
                 {data.name.toUpperCase()}
@@ -282,7 +311,7 @@ export default function page ({
                 sx={{
                   fontFamily: 'cinzel',
                   color: secondaryColor,
-                  fontSize: '16px'
+                  fontSize: '16px',
                 }}
               >{`"${data.title}"`}</Typography>
             </Box>
@@ -298,8 +327,8 @@ export default function page ({
                 alignItems: 'center',
                 justifyContent: 'center',
                 overflow: 'hidden',
-                position: 'relative'
-              }
+                position: 'relative',
+              },
             ]}
           >
             <Box
@@ -310,7 +339,7 @@ export default function page ({
                 position: 'absolute',
                 opacity: '.2',
                 backgroundPosition: '67.4897% 14.6444%',
-                filter: 'brightness(.3) grayscale(100%)'
+                filter: 'brightness(.3) grayscale(100%)',
               }}
               component={'img'}
               alt={`CHARACTER_IMAGE_${data.name.toUpperCase()}`}
@@ -324,8 +353,8 @@ export default function page ({
                 textAlign: 'center',
                 marginX: '30px',
                 '@media (max-width: 600px)': {
-                  fontSize: '12px'
-                }
+                  fontSize: '12px',
+                },
               }}
             >{`"${data.description}"`}</Typography>
           </Box>
@@ -341,49 +370,63 @@ export default function page ({
               position: 'relative',
               '@media (max-width: 600px)': {
                 height: '50%',
-                fontSize: '12px'
-              }
-            }
+                fontSize: '12px',
+              },
+            },
           ]}
         >
-          <Box sx={{
-            objectFit: 'cover',
-            width: '100%',
-            height: '100%',
-            position: 'absolute',
-            opacity: '.2',
-            backgroundPosition: '67.4897% 14.6444%',
-            filter: 'brightness(.3) grayscale(100%)',
-            borderRadius: '10px'
-          }} component='img' alt='WORLD_IMAGE' src={world.image}/>
+          <Box
+            sx={{
+              objectFit: 'cover',
+              width: '100%',
+              height: '100%',
+              position: 'absolute',
+              opacity: '.2',
+              backgroundPosition: '67.4897% 14.6444%',
+              filter: 'brightness(.3) grayscale(100%)',
+              borderRadius: '10px',
+            }}
+            component="img"
+            alt="WORLD_IMAGE"
+            src={world.image}
+          />
 
-          <Typography sx={{
-            fontFamily: 'cinzel',
-            color: primaryColor,
-            '@media (max-width: 600px)': {
-              fontSize: '12px'
-            }
-          }}>
+          <Typography
+            sx={{
+              fontFamily: 'cinzel',
+              color: primaryColor,
+              '@media (max-width: 600px)': {
+                fontSize: '12px',
+              },
+            }}
+          >
             {'WORLD'}
           </Typography>
-          <Typography sx={{
-            fontFamily: 'cinzel',
-            color: secondaryColor,
-            '@media (max-width: 600px)': {
-              fontSize: '12px'
-            }
-          }}>
+          <Typography
+            sx={{
+              fontFamily: 'cinzel',
+              color: secondaryColor,
+              '@media (max-width: 600px)': {
+                fontSize: '12px',
+              },
+            }}
+          >
             {world.name.toUpperCase()}
           </Typography>
-          <Box sx={{
-            marginTop: '10%',
-            width: '80%',
-            '@media (max-width: 1000px)': {
-              display: 'none'
-            }
-          }} component='img' alt='WORLD_ICON' src={world.detailedIcon}/>
+          <Box
+            sx={{
+              marginTop: '10%',
+              width: '80%',
+              '@media (max-width: 1000px)': {
+                display: 'none',
+              },
+            }}
+            component="img"
+            alt="WORLD_ICON"
+            src={world.detailedIcon}
+          />
         </Box>
       </Box>
     </Box>
-  )
+  );
 }

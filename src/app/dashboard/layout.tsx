@@ -1,48 +1,48 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 /* eslint-disable @typescript-eslint/no-misused-promises */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-'use client'
-import React, { useEffect } from 'react'
-import { cinzel } from '@/utils/fonts'
-import Link from 'next/link'
-import Image from 'next/image'
-import logo from '../../assets/images/leaves_and_shadows.png'
-import { useRouter, usePathname } from 'next/navigation'
-import TemporaryDrawer from '@/components/Drawer'
-import { useUser } from '@auth0/nextjs-auth0/client'
-import { handleLogout } from '@auth0/nextjs-auth0'
-import { MenuItem, Select } from '@mui/material'
+'use client';
+import React, { useEffect } from 'react';
+import { cinzel } from '@/utils/fonts';
+import Link from 'next/link';
+import Image from 'next/image';
+import logo from '../../assets/images/leaves_and_shadows.png';
+import { useRouter, usePathname } from 'next/navigation';
+import TemporaryDrawer from '@/components/Drawer';
+import { useUser } from '@auth0/nextjs-auth0/client';
+import { handleLogout } from '@auth0/nextjs-auth0';
+import { MenuItem, Select } from '@mui/material';
 
-export default function Layout ({
-  children
+export default function Layout({
+  children,
 }: Readonly<{ children: React.ReactNode }>): JSX.Element {
-  const router = useRouter()
-  const pathname = usePathname()
-  const session = true
-  const [layout, setLayout] = React.useState('')
-  const { user } = useUser()
+  const router = useRouter();
+  const pathname = usePathname();
+  const session = true;
+  const [layout, setLayout] = React.useState('');
+  const { user } = useUser();
 
-  function pushToDashboard (): void {
+  function pushToDashboard(): void {
     if (pathname !== '/dashboard') {
-      router.push('/dashboard/')
-      handleLogout()
+      router.push('/dashboard/');
+      handleLogout();
     }
   }
 
   useEffect(() => {
     if (pathname === '/dashboard') {
-      setLayout('Login')
+      setLayout('Login');
     } else if (pathname === '/dashboard/login') {
-      setLayout('Dashboard')
+      setLayout('Dashboard');
     }
 
     if (pathname === '/dashboard/login' && session) {
-      router.push('/dashboard')
+      router.push('/dashboard');
     }
-  }, [pathname, session])
+  }, [pathname, session]);
 
-  async function handleSignOut (): Promise<void> {
-    router.push('/api/auth/logout')
+  async function handleSignOut(): Promise<void> {
+    router.push('/api/auth/logout');
   }
 
   return (
@@ -71,16 +71,13 @@ export default function Layout ({
               Leaves & Shadows
             </Link>
           </div>
-
         </ul>
         <div className="w-full md:w-1/2 h-full flex flex-row items-center justify-center md:justify-end sm:pr-4 gap-4">
-          {user
-            ? (
+          {user ? (
             <>
               <TemporaryDrawer logout={handleSignOut} />
             </>
-              )
-            : (
+          ) : (
             <button className="w-40 h-12 rounded bg-zinc-950 flex text-white mr-4">
               <Link
                 href={layout === 'Login' ? '/api/auth/login' : '/dashboard'}
@@ -89,10 +86,10 @@ export default function Layout ({
                 {layout || 'Login'}
               </Link>
             </button>
-              )}
+          )}
         </div>
       </header>
       {children}
     </>
-  )
+  );
 }

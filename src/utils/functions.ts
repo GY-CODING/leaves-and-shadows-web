@@ -1,58 +1,58 @@
-import { keyframes } from '@emotion/react'
+import { keyframes } from '@emotion/react';
 
-export function returnColorWorld (mode: string, world: string): string {
+export function returnColorWorld(mode: string, world: string): string {
   if (mode === 'TAILWIND') {
     switch (world) {
       case 'Asgard':
-        return 'amber-200'
+        return 'amber-200';
       case 'Midgard':
-        return 'orange-500'
+        return 'orange-500';
       case 'Niflheim':
-        return 'sky-950'
+        return 'sky-950';
       case 'Vanaheim':
-        return 'green-500'
+        return 'green-500';
       case 'Jötunheim':
-        return 'cyan-400'
+        return 'cyan-400';
       case 'Alfheim':
-        return 'pink-500'
+        return 'pink-500';
       case 'Svartalfheim':
-        return 'stone-400'
+        return 'stone-400';
       case 'Helheim':
-        return 'teal-400'
+        return 'teal-400';
       case 'Muspelheim':
-        return 'red-500'
+        return 'red-500';
       case 'Ginnungagap':
-        return 'purple-600'
+        return 'purple-600';
       default:
-        return 'white'
+        return 'white';
     }
   } else if (mode === 'SX') {
     switch (world) {
       case 'asgard':
-        return '#fde68a'
+        return '#fde68a';
       case 'midgard':
-        return '#f97316'
+        return '#f97316';
       case 'niflheim':
-        return '#082f49'
+        return '#082f49';
       case 'vanaheim':
-        return '#22c55e'
+        return '#22c55e';
       case 'jotunheim':
-        return '#22d3ee'
+        return '#22d3ee';
       case 'alfheim':
-        return '#ec4899'
+        return '#ec4899';
       case 'svartalfheim':
-        return '#a8a29e'
+        return '#a8a29e';
       case 'helheim':
-        return '#2dd4bf'
+        return '#2dd4bf';
       case 'muspelheim':
-        return '#ef4444'
+        return '#ef4444';
       case 'ginnungagap':
-        return '#9333ea'
+        return '#9333ea';
       default:
-        return 'white'
+        return 'white';
     }
   }
-  return 'white'
+  return 'white';
 }
 
 export const grow = keyframes`
@@ -66,7 +66,7 @@ export const grow = keyframes`
   opacity: 1;
 
 }
-`
+`;
 export const def = keyframes`
 0% {
   height: 100%;
@@ -77,57 +77,57 @@ export const def = keyframes`
   height: 100%;
   opacity: 1;
 
-}`
+}`;
 
-export function returnPrimaryColorByWorld (world?: string): string {
+export function returnPrimaryColorByWorld(world?: string): string {
   switch (world) {
     case 'asgard':
-      return '#fde68a'
+      return '#fde68a';
     case 'midgard':
-      return '#f97316'
+      return '#f97316';
     case 'niflheim':
-      return '#082f49'
+      return '#082f49';
     case 'vanaheim':
-      return '#22c55e'
+      return '#22c55e';
     case 'jotunheim':
-      return '#22d3ee'
+      return '#22d3ee';
     case 'alfheim':
-      return '#ec4899'
+      return '#ec4899';
     case 'svartalfheim':
-      return '#a8a29e'
+      return '#a8a29e';
     case 'helheim':
-      return '#2dd4bf'
+      return '#2dd4bf';
     case 'muspelheim':
-      return '#ef4444'
+      return '#ef4444';
     case 'ginnungagap':
-      return '#9333ea'
+      return '#9333ea';
     default:
-      return 'white'
+      return 'white';
   }
 }
-export function returnSecondaryColorByWorld (world?: string): string {
+export function returnSecondaryColorByWorld(world?: string): string {
   switch (world) {
     case 'asgard':
-      return '#fef3c7'
+      return '#fef3c7';
     case 'midgard':
-      return '#fdba74'
+      return '#fdba74';
     case 'niflheim':
-      return '#0369a1'
+      return '#0369a1';
     case 'vanaheim':
-      return '#86efac'
+      return '#86efac';
     case 'jotunheim':
-      return '#a5f3fc'
+      return '#a5f3fc';
     case 'alfheim':
-      return '#f9a8d4'
+      return '#f9a8d4';
     case 'svartalfheim':
-      return '#d6d3d1'
+      return '#d6d3d1';
     case 'helheim':
-      return '#5eead4'
+      return '#5eead4';
     case 'muspelheim':
-      return '#f87171'
+      return '#f87171';
     case 'ginnungagap':
-      return '#e879f9'
+      return '#e879f9';
     default:
-      return 'white'
+      return 'white';
   }
 }
