@@ -1,13 +1,12 @@
 /* eslint-disable @typescript-eslint/no-confusing-void-expression */
 'use client';
 import React, { useState } from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import Image from 'next/image';
 import logo from '../../assets/images/leaves_and_shadows.png';
 import VILH_SPRITE from '../../assets/images/Vilh_character_sprite.png';
 import YVES_SPRITE from '../../assets/images/Yves_character_sprite.png';
 import gif from '../../assets/video/bg.gif';
-import GAME_IMAGE from '../../assets/images/game_image.png';
 import { cinzel, alkhemikal } from '@/utils/fonts';
 import {
   FLEX_COLUMN,
@@ -18,6 +17,7 @@ import {
   VANAHEIM_ICON,
   VANAHEIM_IMAGE,
 } from '@/utils/global.constants';
+import Link from 'next/link';
 
 export default function Home(): JSX.Element {
   const [isGameSelected, setIsGameSelected] = useState<boolean>(true);
@@ -46,13 +46,16 @@ export default function Home(): JSX.Element {
     'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum, magni explicabo nihil eligendi deserunt mollitia? Qui vero voluptas consectetur natus dolor, necessitatibus suscipit mollitia fugit ratione incidunt modi maxime nostrum, iste aperiam. Harum ratione, aperiam nesciunt praesentium rerum placeat? Placeat obcaecati deserunt sunt cum repellat fuga quis ad officiis pariatur?';
   return (
     <div className="w-screen h-[290vh] overflow-x-hidden flex flex-col m-0 p-0 jusity-start items center z-0">
-      <Box sx={{ width: '100%', height: '90vh', zIndex: -1 }}>
+      <Box
+        sx={{ width: '100%', height: '90vh', zIndex: -1, overflowX: 'hidden' }}
+      >
         <Image
           src={gif}
           alt="background"
+          draggable={false}
           layout="fill"
           objectFit="cover"
-          className="blur mt-4 overflow-hidden"
+          className="blur-[4px] mt-4 overflow-hidden absolute left-0"
         />
         <Box
           sx={{
@@ -146,8 +149,9 @@ export default function Home(): JSX.Element {
             width={200}
             height={200}
             alt="background"
-            src={GAME_IMAGE.src}
-            className="w-10/12"
+            src={gif}
+            draggable={false}
+            className="w-10/12 opacity-50"
           />
         </Box>
         <Box
@@ -157,7 +161,7 @@ export default function Home(): JSX.Element {
               width: '35%',
               height: '100%',
               justifyContent: 'center',
-              gap: '2rem',
+              alignItems: 'center',
               '@media (max-width: 1024px)': {
                 width: '80%',
                 height: '50%',
@@ -206,7 +210,12 @@ export default function Home(): JSX.Element {
               Historia
             </Typography>
           </Box>
-          <Box sx={[FLEX_COLUMN, { width: '100%', height: '50%' }]}>
+          <Box
+            sx={[
+              FLEX_COLUMN,
+              { width: '100%', height: '50%', alignItems: 'center' },
+            ]}
+          >
             <Typography
               sx={{
                 fontFamily: 'cinzel',
@@ -218,6 +227,42 @@ export default function Home(): JSX.Element {
             >
               {isGameSelected ? gameText : gameHistory}
             </Typography>
+            {!isGameSelected && (
+              <Button
+                sx={{
+                  marginTop: '1%',
+                  border: '1px solid #14b8a6',
+                  color: '#14b8a6',
+                  width: '50%',
+                  '&:hover': {
+                    border: '1px solid #14b8a6',
+                    backgroundColor: '#14b8a6',
+                    color: 'white',
+                  },
+                }}
+                variant="outlined"
+              >
+                <Link href={'/dashboard/characters'}>Personajes</Link>
+              </Button>
+            )}
+            {isGameSelected && (
+              <Button
+                sx={{
+                  marginTop: '1%',
+                  border: '1px solid #14b8a6',
+                  color: '#14b8a6',
+                  width: '50%',
+                  '&:hover': {
+                    border: '1px solid #14b8a6',
+                    backgroundColor: '#14b8a6',
+                    color: 'white',
+                  },
+                }}
+                variant="outlined"
+              >
+                Guía
+              </Button>
+            )}
           </Box>
         </Box>
       </Box>
@@ -248,7 +293,7 @@ export default function Home(): JSX.Element {
           }}
         >
           <Image
-            className="w-full h-full"
+            className="w-full h-full aspect-video object-cover"
             src={characterSelected === 'VILH' ? VANAHEIM_IMAGE : HELHEIM_IMAGE}
             width={200}
             height={200}
@@ -264,10 +309,11 @@ export default function Home(): JSX.Element {
             flexDirection: 'column',
             justifyContent: 'start',
             alignItems: 'center',
+            overflowX: 'hidden',
             gap: '1rem',
             '@media (max-width: 1024px)': {
               width: '100%',
-              height: '50%',
+              height: '100%',
             },
           }}
         >
@@ -297,6 +343,9 @@ export default function Home(): JSX.Element {
                   '&:hover': {
                     filter: 'brightness(1)',
                     cursor: 'pointer',
+                  },
+                  '@media (max-width: 1024px)': {
+                    width: '60px',
                   },
                 }}
                 component={'img'}
@@ -328,6 +377,9 @@ export default function Home(): JSX.Element {
                   '&:hover': {
                     filter: 'brightness(1)',
                     cursor: 'pointer',
+                  },
+                  '@media (max-width: 1024px)': {
+                    width: '60px',
                   },
                 }}
                 onClick={handleChangeToYves}
@@ -366,6 +418,32 @@ export default function Home(): JSX.Element {
           >
             {characterSelected === 'VILH' ? VilhText : YvesText}
           </Typography>
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: 'transparent',
+              border:
+                characterSelected === 'VILH'
+                  ? '1px solid #22c55e'
+                  : '1px solid #14b8a6',
+              '&:hover': {
+                backgroundColor:
+                  characterSelected === 'VILH' ? '#22c55e' : '#14b8a6',
+              },
+            }}
+          >
+            <Link
+              href={
+                characterSelected === 'VILH'
+                  ? '/dashboard/characters/vilh-vanaheim'
+                  : '/dashboard/characters/yves-helheim'
+              }
+            >
+              {characterSelected === 'VILH'
+                ? 'Más acerca de Vilh'
+                : 'Más acerca de Yves'}
+            </Link>
+          </Button>
           <Box
             sx={{
               height: '60%',
@@ -381,8 +459,9 @@ export default function Home(): JSX.Element {
                 left: '0%',
               },
               '@media (max-width: 640px)': {
-                height: '30%',
-                left: '-5%',
+                height: '25%',
+                left: '0%',
+                top: '210%',
               },
             }}
             component={'img'}
@@ -396,6 +475,7 @@ export default function Home(): JSX.Element {
               transition: '.5s all',
               position: 'absolute',
               opacity: characterSelected === 'YVES' ? 1 : 0,
+              overflow: 'hidden',
               zIndex: -1,
 
               '@media (max-width: 1024px)': {
@@ -403,8 +483,9 @@ export default function Home(): JSX.Element {
                 left: '65%',
               },
               '@media (max-width: 640px)': {
-                height: '30%',
-                left: '65%',
+                height: '25%',
+                left: '63%',
+                top: '210%',
               },
             }}
             component={'img'}
