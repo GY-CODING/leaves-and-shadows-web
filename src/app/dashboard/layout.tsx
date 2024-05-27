@@ -49,7 +49,7 @@ export default function Layout({
     <>
       <header
         className={
-          'w-screen sticky top-0 sm:h-24 h-24 bg-zinc-900 flex justify-evenly md:justify-between flex-col md:flex-row self-start  bg-opacity-20 backdrop:blur z-10'
+          'w-screen sticky top-0 sm:h-24 h-24 bg-zinc-900 flex justify-evenly md:justify-between flex-col md:flex-row self-start  bg-opacity-20 backdrop:blur z-10 backdrop-blur'
         }
       >
         <ul className="flex flex-row justify-center align-center md:items-center text-center md:w-1/2 md:text-center md:justify-center md:align-center gap-4">

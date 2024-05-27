@@ -45,3 +45,12 @@ export const FLEX_COLUMN_CENTER = {
   justifyContent: 'center',
 };
 export const FLEX_COLUMN = { display: 'flex', flexDirection: 'column' };
+
+export const VANAHEIM_ICON =
+  'https://raw.githubusercontent.com/GY-CODING/img-repo/main/fall-of-the-gods/worlds/icons/vanaheim-detailed-icon.webp';
+export const HELHEIM_ICON =
+  'https://raw.githubusercontent.com/GY-CODING/img-repo/main/fall-of-the-gods/worlds/icons/helheim-detailed-icon.webp';
+export const HELHEIM_IMAGE =
+  'https://raw.githubusercontent.com/GY-CODING/img-repo/main/fall-of-the-gods/worlds/world_helheim.webp';
+export const VANAHEIM_IMAGE =
+  'https://raw.githubusercontent.com/GY-CODING/img-repo/main/fall-of-the-gods/worlds/world_vanaheim.webp';
