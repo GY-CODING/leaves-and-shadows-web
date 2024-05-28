@@ -1,4 +1,5 @@
 import { type Achievement } from '@/domain/achievement';
+import { cinzel } from '@/utils/fonts';
 import { FLEX_COLUMN_CENTER, FLEX_ROW } from '@/utils/global.constants';
 import { Box, Typography } from '@mui/material';
 import React from 'react';
@@ -56,6 +57,7 @@ export default function AchievementCard({
         ]}
       >
         <Typography
+          className={cinzel.className}
           sx={{
             color: 'white',
             fontWeight: 'bold',
@@ -66,6 +68,7 @@ export default function AchievementCard({
           {achievement.name}
         </Typography>
         <Typography
+          className={cinzel.className}
           sx={{
             color: 'white',
             textAlign: 'center',

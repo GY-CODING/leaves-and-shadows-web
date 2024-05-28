@@ -1,3 +1,4 @@
+import { cinzel } from '@/utils/fonts';
 import { def, grow, returnColorWorld } from '@/utils/functions';
 import { SX } from '@/utils/global.constants';
 import { Box, Typography } from '@mui/material';
@@ -89,6 +90,7 @@ export default function CharacterCard({
           }}
         >
           <Typography
+            className={cinzel.className}
             sx={{
               fontFamily: 'cinzel',
               fontWeight: 'bold',
@@ -100,6 +102,7 @@ export default function CharacterCard({
           </Typography>
           <Typography
             variant="h6"
+            className={cinzel.className}
             sx={{
               fontFamily: 'cinzel',
               color: 'white',
@@ -135,6 +138,7 @@ export default function CharacterCard({
           }}
         >
           <Typography
+            className={cinzel.className}
             sx={{
               fontFamily: 'cinzel',
               fontSize: '13px',

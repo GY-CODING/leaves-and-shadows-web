@@ -121,6 +121,7 @@ export default function TemporaryDrawer({
           <Button
             startIcon={<EmojiEventsIcon sx={{ position: 'relative' }} />}
             onClick={toggleDrawer(false)}
+            className={cinzel.className}
             sx={{
               width: '90%',
               height: '56px',
@@ -159,9 +160,8 @@ export default function TemporaryDrawer({
 
   return (
     <>
-      {/* <button onClick={toggleDrawer(true)} className={`${cinzel.className} w-40 h-12 bg-zinc-950 text-white hover:bg-green-500 hover:text-white rounded text-center items-center justify-center flex transition duration-500 ease-in-out"`}>{(session?.user?.name)}</button> */}
       <Button
-        className="pointer-events-auto"
+        className={`${cinzel.className} pointer-events-auto`}
         onClick={toggleDrawer(true)}
         sx={{
           fontFamily: cinzel.className,

@@ -21,6 +21,7 @@ import {
   returnSecondaryColorByWorld,
 } from '@/utils/functions';
 import { useCharacterWorld } from '@/hooks/useCharacterWorld';
+import { cinzel } from '@/utils/fonts';
 export default function page({
   params,
 }: {
@@ -346,6 +347,7 @@ export default function page({
               src={data.image}
             ></Box>
             <Typography
+              className={cinzel.className}
               sx={{
                 fontFamily: 'cinzel',
                 position: 'absolute',

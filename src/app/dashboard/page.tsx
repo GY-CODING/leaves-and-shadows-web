@@ -178,6 +178,7 @@ export default function Home(): JSX.Element {
             <Typography
               onClick={handleChangeToGame}
               variant="h5"
+              className={cinzel.className}
               sx={{
                 cursor: 'pointer',
                 padding: 2,
@@ -195,6 +196,7 @@ export default function Home(): JSX.Element {
             <Typography
               onClick={handleChangeToHistory}
               variant="h5"
+              className={cinzel.className}
               sx={{
                 cursor: 'pointer',
                 padding: 2,
@@ -217,6 +219,7 @@ export default function Home(): JSX.Element {
             ]}
           >
             <Typography
+              className={cinzel.className}
               sx={{
                 fontFamily: 'cinzel',
                 color: 'white',
@@ -319,6 +322,7 @@ export default function Home(): JSX.Element {
         >
           <Typography
             variant="h5"
+            className={cinzel.className}
             sx={{
               cursor: 'pointer',
               padding: 4,
@@ -353,6 +357,7 @@ export default function Home(): JSX.Element {
                 src={VANAHEIM_ICON}
               />
               <Typography
+                className={cinzel.className}
                 sx={{
                   cursor: 'pointer',
                   padding: 1,
@@ -387,6 +392,7 @@ export default function Home(): JSX.Element {
                 src={HELHEIM_ICON}
               />
               <Typography
+                className={cinzel.className}
                 sx={{
                   cursor: 'pointer',
                   padding: 1,
@@ -401,6 +407,7 @@ export default function Home(): JSX.Element {
             </Box>
           </Box>
           <Typography
+            className={cinzel.className}
             sx={{
               cursor: 'pointer',
               width: '60%',
