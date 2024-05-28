@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -19,6 +20,7 @@ import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import React from 'react';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import Link from 'next/link';
+import ResponsiveDialog from './LogoutModal';
 
 interface TemporaryDrawerProps {
   logout: () => void;
@@ -33,11 +35,26 @@ export default function TemporaryDrawer({
   logout,
 }: TemporaryDrawerProps): JSX.Element {
   const [open, setOpen] = React.useState(false);
+  const [openModal, setOpenModal] = React.useState(false);
+
   const theme = useTheme();
   const { user } = useUser();
   const isMobileDevice = useMediaQuery(theme.breakpoints.down('sm'));
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
+  };
+
+  const handleClickOpen = () => {
+    setOpenModal(true);
+  };
+
+  const handleClose = () => {
+    setOpenModal(false);
+  };
+  const handleSubmit = () => {
+    logout();
+    setOpenModal(false);
+    setOpen(false);
   };
   const DrawerList = (
     <Box
@@ -150,11 +167,16 @@ export default function TemporaryDrawer({
       </FormControl>
 
       <button
-        onClick={logout}
+        onClick={handleClickOpen}
         className={`w-40 h-12 rounded bg-zinc-800 flex text-white text-center justify-center items-center ${cinzel.className} hover:bg-green-500 transition duration-500 ease-in-out justify-self-end`}
       >
         Logout
       </button>
+      <ResponsiveDialog
+        handleClose={handleClose}
+        handleSubmit={handleSubmit}
+        open={openModal}
+      />
     </Box>
   );
 
