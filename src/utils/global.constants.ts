@@ -54,3 +54,15 @@ export const HELHEIM_IMAGE =
   'https://raw.githubusercontent.com/GY-CODING/img-repo/main/fall-of-the-gods/worlds/world_helheim.webp';
 export const VANAHEIM_IMAGE =
   'https://raw.githubusercontent.com/GY-CODING/img-repo/main/fall-of-the-gods/worlds/world_vanaheim.webp';
+
+export const START_MENU = '/startMenu.mp4';
+export const VILH_MEETS_YVES = '/vilhMeetsYves.mp4';
+export const VILH_IDLE = '/vilhIdle.mp4';
+export const YVES_IDLE = '/yvesIdle.mp4';
+export const VANAHEIM_IDLE = '/vanaheimIdle.mp4';
+export const HELHEIM_IDLE = '/helheimIdle.mp4';
+
+export const CHARACTERS = {
+  VILH: 'VILH',
+  YVES: 'YVES',
+};

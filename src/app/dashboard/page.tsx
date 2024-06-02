@@ -6,16 +6,20 @@ import Image from 'next/image';
 import logo from '../../assets/images/leaves_and_shadows.png';
 import VILH_SPRITE from '../../assets/images/Vilh_character_sprite.png';
 import YVES_SPRITE from '../../assets/images/Yves_character_sprite.png';
-import gif from '../../assets/video/bg.gif';
 import { cinzel, alkhemikal } from '@/utils/fonts';
 import {
+  CHARACTERS,
   FLEX_COLUMN,
   FLEX_ROW_CENTER,
   GROVE_OF_FETTERS_IMG,
   HELHEIM_ICON,
-  HELHEIM_IMAGE,
   VANAHEIM_ICON,
-  VANAHEIM_IMAGE,
+  HELHEIM_IDLE,
+  START_MENU,
+  VANAHEIM_IDLE,
+  VILH_IDLE,
+  VILH_MEETS_YVES,
+  YVES_IDLE,
 } from '@/utils/global.constants';
 import Link from 'next/link';
 
@@ -49,13 +53,13 @@ export default function Home(): JSX.Element {
       <Box
         sx={{ width: '100%', height: '90vh', zIndex: -1, overflowX: 'hidden' }}
       >
-        <Image
-          src={gif}
-          alt="background"
+        <video
+          src={START_MENU}
           draggable={false}
-          layout="fill"
-          objectFit="cover"
-          className="blur-[4px] mt-4 overflow-hidden absolute left-0"
+          autoPlay
+          muted
+          loop
+          className="blur-[3px] mt-4 overflow-hidden absolute left-0 top-0 min-w-full min-h-full w-auto h-auto object-cover"
         />
         <Box
           sx={{
@@ -78,7 +82,7 @@ export default function Home(): JSX.Element {
             src={logo}
             width={200}
             height={200}
-            alt={''}
+            alt={'logo'}
           />
           <h3
             className={`${alkhemikal.className} sm:text-7xl text-4xl text-white`}
@@ -134,6 +138,8 @@ export default function Home(): JSX.Element {
             {
               width: '55%',
               height: '100%',
+              position: 'relative',
+              overflow: 'hidden',
               '@media (max-width: 1024px)': {
                 width: '80%',
                 height: '40%',
@@ -145,13 +151,15 @@ export default function Home(): JSX.Element {
             },
           ]}
         >
-          <Image
+          <video
             width={200}
             height={200}
-            alt="background"
-            src={gif}
+            src={VILH_MEETS_YVES}
+            autoPlay
+            loop
+            muted
             draggable={false}
-            className="w-10/12 opacity-50"
+            className="w-10/12 inset-0 border border-white rounded-lg opacity-80"
           />
         </Box>
         <Box
@@ -291,16 +299,21 @@ export default function Home(): JSX.Element {
             height: '100%',
             zIndex: -2,
             filter: 'blur(6px)',
-            opacity: 0.4,
             position: 'absolute',
           }}
         >
-          <Image
+          <video
             className="w-full h-full aspect-video object-cover"
-            src={characterSelected === 'VILH' ? VANAHEIM_IMAGE : HELHEIM_IMAGE}
+            src={
+              characterSelected === CHARACTERS.VILH
+                ? VANAHEIM_IDLE
+                : HELHEIM_IDLE
+            }
+            autoPlay
+            loop
+            muted
             width={200}
             height={200}
-            alt={''}
           />
         </Box>
         <Box
@@ -340,7 +353,7 @@ export default function Home(): JSX.Element {
                 sx={{
                   width: 72,
                   filter:
-                    characterSelected === 'VILH'
+                    characterSelected === CHARACTERS.VILH
                       ? 'brightness(1)'
                       : 'brightness(.4)',
                   transition: 'all .5s',
@@ -355,6 +368,7 @@ export default function Home(): JSX.Element {
                 component={'img'}
                 onClick={handleChangeToVilh}
                 src={VANAHEIM_ICON}
+                alt="VanaheimIcon"
               />
               <Typography
                 className={cinzel.className}
@@ -364,7 +378,8 @@ export default function Home(): JSX.Element {
                   fontFamily: 'cinzel',
                   fontWeight: 'bold',
                   textAlign: 'center',
-                  color: characterSelected === 'VILH' ? 'white' : 'gray',
+                  color:
+                    characterSelected === CHARACTERS.VILH ? 'white' : 'gray',
                 }}
               >
                 VILH
@@ -375,7 +390,7 @@ export default function Home(): JSX.Element {
                 sx={{
                   width: 72,
                   filter:
-                    characterSelected === 'YVES'
+                    characterSelected === CHARACTERS.YVES
                       ? 'brightness(1)'
                       : 'brightness(.4)',
                   transition: 'all .5s',
@@ -390,6 +405,7 @@ export default function Home(): JSX.Element {
                 onClick={handleChangeToYves}
                 component={'img'}
                 src={HELHEIM_ICON}
+                alt="HelheimIcon"
               />
               <Typography
                 className={cinzel.className}
@@ -398,7 +414,8 @@ export default function Home(): JSX.Element {
                   padding: 1,
                   fontFamily: 'cinzel',
                   fontWeight: 'bold',
-                  color: characterSelected === 'YVES' ? 'white' : 'gray',
+                  color:
+                    characterSelected === CHARACTERS.YVES ? 'white' : 'gray',
                   textAlign: 'center',
                 }}
               >
@@ -423,34 +440,41 @@ export default function Home(): JSX.Element {
               },
             }}
           >
-            {characterSelected === 'VILH' ? VilhText : YvesText}
+            {characterSelected === CHARACTERS.VILH ? VilhText : YvesText}
           </Typography>
           <Button
             variant="contained"
             sx={{
               backgroundColor: 'transparent',
               border:
-                characterSelected === 'VILH'
+                characterSelected === CHARACTERS.VILH
                   ? '1px solid #22c55e'
                   : '1px solid #14b8a6',
               '&:hover': {
                 backgroundColor:
-                  characterSelected === 'VILH' ? '#22c55e' : '#14b8a6',
+                  characterSelected === CHARACTERS.VILH ? '#22c55e' : '#14b8a6',
               },
             }}
           >
             <Link
               href={
-                characterSelected === 'VILH'
+                characterSelected === CHARACTERS.VILH
                   ? '/dashboard/characters/vilh-vanaheim'
                   : '/dashboard/characters/yves-helheim'
               }
             >
-              {characterSelected === 'VILH'
+              {characterSelected === CHARACTERS.VILH
                 ? 'Más acerca de Vilh'
                 : 'Más acerca de Yves'}
             </Link>
           </Button>
+          <video
+            src={characterSelected === CHARACTERS.VILH ? VILH_IDLE : YVES_IDLE}
+            autoPlay
+            loop
+            muted
+            className={`w-[70%] sm:w-3/4 xl:w-[40%] border ${characterSelected === CHARACTERS.VILH ? 'border-green-500' : 'border-teal_600'} rounded-lg opacity-80`}
+          />
           <Box
             sx={{
               height: '60%',
@@ -459,7 +483,7 @@ export default function Home(): JSX.Element {
               imageRendering: 'pixelated',
               transition: '.5s all',
               position: 'absolute',
-              opacity: characterSelected === 'VILH' ? 1 : 0,
+              opacity: characterSelected === CHARACTERS.VILH ? 1 : 0,
               zIndex: -1,
               '@media (max-width: 1024px)': {
                 height: '50%',
@@ -473,6 +497,7 @@ export default function Home(): JSX.Element {
             }}
             component={'img'}
             src={VILH_SPRITE.src}
+            alt="VilhSprite"
           />
           <Box
             sx={{
@@ -481,7 +506,7 @@ export default function Home(): JSX.Element {
               imageRendering: 'pixelated',
               transition: '.5s all',
               position: 'absolute',
-              opacity: characterSelected === 'YVES' ? 1 : 0,
+              opacity: characterSelected === CHARACTERS.YVES ? 1 : 0,
               overflow: 'hidden',
               zIndex: -1,
 
@@ -497,6 +522,7 @@ export default function Home(): JSX.Element {
             }}
             component={'img'}
             src={YVES_SPRITE.src}
+            alt="YvesSprite"
           />
         </Box>
       </Box>
