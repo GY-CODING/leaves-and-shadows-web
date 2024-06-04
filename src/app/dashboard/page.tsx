@@ -20,6 +20,10 @@ import {
   VILH_IDLE,
   VILH_MEETS_YVES,
   YVES_IDLE,
+  GAME_TEXT,
+  STORY_TEXT,
+  VILH_TEXT,
+  YVES_TEXT,
 } from '@/utils/global.constants';
 import Link from 'next/link';
 
@@ -40,14 +44,6 @@ export default function Home(): JSX.Element {
     setCharacterSelected('YVES');
   }
 
-  const gameText =
-    'Leaves and Shadows es un videojuego 2D basado en una de las epicas historias de Yves y Vilh, 2 personajes que se embarcan en una aventura basada en la historia de Fall of the Gods cuyas fantasticas cualidades heredadas de su padre Odin y su madre Gullveig les permiten enfrentar a los mas temibles enemigos de los 9 mundos.';
-  const gameHistory =
-    'Fall of the Gods es una historia basada en la mitologia nordica, en la cual se narra la caida de los dioses y el fin de los 9 mundos. La historia se centra en la lucha de los dioses contra los gigantes con la ayuda una peculiar compañia con poderes inimaginables la cual la conforman: Yves, Vilh, Sveinn, Holger. La historia comienza en Vanaheim, donde comienza la partida para surcar los 9 mundos';
-  const VilhText =
-    'Vilh es el dios de la magia, uno de los hijos de Odín escondidos en Vanaheim y criado por Gullveig, pose grandes dondes para la magia oscura y el control de la natuzaleza, su poder es tan grande que puede controlar los elementos y la vida misma. Vilh vive en un bosque profundo y magico en Vanaheim donde tiene un arbol magico cuya visibilidad es solo para aquellos pocos a los que puede llamar amigos.';
-  const YvesText =
-    'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum, magni explicabo nihil eligendi deserunt mollitia? Qui vero voluptas consectetur natus dolor, necessitatibus suscipit mollitia fugit ratione incidunt modi maxime nostrum, iste aperiam. Harum ratione, aperiam nesciunt praesentium rerum placeat? Placeat obcaecati deserunt sunt cum repellat fuga quis ad officiis pariatur?';
   return (
     <div className="w-screen h-[290vh] overflow-x-hidden flex flex-col m-0 p-0 jusity-start items center z-0">
       <Box
@@ -236,7 +232,7 @@ export default function Home(): JSX.Element {
                 textJustify: 'distribute',
               }}
             >
-              {isGameSelected ? gameText : gameHistory}
+              {isGameSelected ? GAME_TEXT : STORY_TEXT}
             </Typography>
             {!isGameSelected && (
               <Button
@@ -368,6 +364,7 @@ export default function Home(): JSX.Element {
                 component={'img'}
                 onClick={handleChangeToVilh}
                 src={VANAHEIM_ICON}
+                draggable={false}
                 alt="VanaheimIcon"
               />
               <Typography
@@ -405,6 +402,7 @@ export default function Home(): JSX.Element {
                 onClick={handleChangeToYves}
                 component={'img'}
                 src={HELHEIM_ICON}
+                draggable={false}
                 alt="HelheimIcon"
               />
               <Typography
@@ -440,7 +438,7 @@ export default function Home(): JSX.Element {
               },
             }}
           >
-            {characterSelected === CHARACTERS.VILH ? VilhText : YvesText}
+            {characterSelected === CHARACTERS.VILH ? VILH_TEXT : YVES_TEXT}
           </Typography>
           <Button
             variant="contained"

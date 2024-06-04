@@ -60,10 +60,6 @@ export default function ResponsiveDialog({
               color="success"
               sx={{
                 color: 'white',
-                // backgroundColor: '#22c55e',
-                '&:hover': {
-                  //   backgroundColor: '#4ade80',
-                },
               }}
               onClick={handleSubmit}
               autoFocus
