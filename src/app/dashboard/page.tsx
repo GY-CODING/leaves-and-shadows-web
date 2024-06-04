@@ -26,12 +26,25 @@ import {
   YVES_TEXT,
   FLEX_COLUMN_CENTER,
 } from '@/utils/global.constants';
+import AppleIcon from '@mui/icons-material/Apple';
+import MicrosoftIcon from '@mui/icons-material/Microsoft';
+
 import Link from 'next/link';
 
 export default function Home(): JSX.Element {
   const [isGameSelected, setIsGameSelected] = useState<boolean>(true);
   const [characterSelected, setCharacterSelected] = useState<string>('VILH');
 
+  function handleDownloadMac(): void {
+    void window.open(
+      'https://github.com/GY-CODING/leaves-and-shadows/releases/download/V1.0.0/leaves_and_shadows_mac_arm.zip',
+    );
+  }
+  function handleDownloadWindows(): void {
+    void window.open(
+      'https://github.com/GY-CODING/leaves-and-shadows/releases/download/V1.0.0/leaves_and_shadows_win64.zip',
+    );
+  }
   function handleChangeToGame(): void {
     setIsGameSelected(true);
   }
@@ -86,11 +99,46 @@ export default function Home(): JSX.Element {
           >
             Leaves & Shadows
           </h3>
-          <button
-            className={`${cinzel.className} w-32 h-12 rounded bg-green-600 text-white hover:bg-green-500 ease-in-out transition-all duration-500 `}
-          >
-            Download
-          </button>
+          <div className="flex flex-row gap-2">
+            <Button
+              size="large"
+              variant="contained"
+              onClick={handleDownloadWindows}
+              startIcon={
+                <MicrosoftIcon className="color-white m-0 p-0 text-center" />
+              }
+              sx={{
+                height: '3rem',
+                lineHeight: 1.5,
+                backgroundColor: '#22c55e',
+                color: 'white',
+                '&:hover': {
+                  backgroundColor: '#4ade80',
+                },
+              }}
+            >
+              <span className="relative top-[1px]">DOWNLOAD</span>
+            </Button>
+            <Button
+              size="large"
+              variant="contained"
+              onClick={handleDownloadMac}
+              startIcon={
+                <AppleIcon className="color-white m-0 p-0 text-center" />
+              }
+              sx={{
+                height: '3rem',
+                lineHeight: 1.5,
+                backgroundColor: '#22c55e',
+                color: 'white',
+                '&:hover': {
+                  backgroundColor: '#4ade80',
+                },
+              }}
+            >
+              <span className="relative top-[1px]">DOWNLOAD</span>
+            </Button>
+          </div>
         </Box>
       </Box>
 

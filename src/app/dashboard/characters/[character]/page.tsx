@@ -92,7 +92,6 @@ export default function page({
         {
           width: '100%',
           height: '90vh',
-          backgroundColor: '#171717',
         },
       ]}
     >
@@ -116,6 +115,20 @@ export default function page({
           },
         }}
       >
+        <Box
+          component={'img'}
+          src={world.image}
+          sx={{
+            top: '0',
+            left: '0',
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+            zIndex: -1,
+            opacity: '.2',
+            filter: 'grayscale(100%)',
+          }}
+        />
         <Box
           sx={{
             width: '100%',

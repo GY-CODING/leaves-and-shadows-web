@@ -75,3 +75,6 @@ export const VILH_TEXT =
   'Vilh fue criado en Vanaheim, aunque se desconoce la identidad de sus padres y dónde nació, fue criado desde joven por la diosa Vanir Gullveig, que le enseñó todo lo que actualmente sabe de magia. Con el tiempo, fue acrecentando sus conocimientos y prácticas, para convertirse finalmente en el dios de la magia, uno de los mayores magos de todos los tiempos. Entabló una relación amorosa con su amiga de la infancia y diosa de la belleza, Freyja, que duró muchos años, hasta que le fue arrebatada tras la Guerra de los Dioses por Odín.';
 export const YVES_TEXT =
   'Yves pasó su infancia y adolescencia encerrado en una cárcel de Helheim, sin saber realmente qué le llevó allí a tan temprana edad, pasaba sus días pensando y pasando el rato como podía, y sus noches teniendo extraños sueños que parecían premonitorios. Consiguió entablar una amistad con su carcelera, la mismísima diosa de la muerte y reina de Helheim, Hela, que más tarde se convertiría en su esposa. Un día, uno de los sueños alteró tanto el estado de Yves, que se convirtió entero en la oscuridad personificada y escapó de Helheim.';
+
+export const VILH_HOUSE =
+  'https://raw.githubusercontent.com/GY-CODING/img-repo/main/fall-of-the-gods/maps/maps_vilhforest_2.webp';

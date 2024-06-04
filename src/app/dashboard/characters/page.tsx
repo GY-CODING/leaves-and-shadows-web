@@ -18,7 +18,9 @@ import {
   NONE,
   SVARTALFHEIM,
   VANAHEIM,
+  VILH_HOUSE,
 } from '@/utils/global.constants';
+import { Box } from '@mui/material';
 
 export default function Characters(): JSX.Element {
   const [characterName, setCharacterName] = useState('');
@@ -103,6 +105,20 @@ export default function Characters(): JSX.Element {
 
   return (
     <div className="w-full h-[80vh] overflow-hidden flex flex-col gap-4 items-center justify-center">
+      <Box
+        component={'img'}
+        src={VILH_HOUSE}
+        sx={{
+          top: '0',
+          left: '0',
+          position: 'absolute',
+          width: '100%',
+          height: '100%',
+          zIndex: -1,
+          opacity: '.4',
+          filter: 'grayscale(100%)',
+        }}
+      />
       <h1
         className={`${cinzel.className} font-semibold text-white text-xl sm:text-3xl mt-4`}
       >
