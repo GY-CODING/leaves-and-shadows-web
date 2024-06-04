@@ -24,6 +24,7 @@ import {
   STORY_TEXT,
   VILH_TEXT,
   YVES_TEXT,
+  FLEX_COLUMN_CENTER,
 } from '@/utils/global.constants';
 import Link from 'next/link';
 
@@ -280,7 +281,7 @@ export default function Home(): JSX.Element {
             height: '100vh',
             zIndex: -2,
             display: 'flex',
-            flexDirection: 'row',
+            flexDirection: 'column',
             alignItems: 'center',
             '@media (max-width: 1024px)': {
               flexDirection: 'column',
@@ -312,125 +313,153 @@ export default function Home(): JSX.Element {
             height={200}
           />
         </Box>
-        <Box
+        <Typography
+          className={`${cinzel.className}`}
+          variant="h5"
+          color={'white'}
           sx={{
-            width: '100%',
-            height: '100%',
+            fontFamily: 'cinzel',
+            fontWeight: 'bold',
             textAlign: 'center',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'start',
-            alignItems: 'center',
-            overflowX: 'hidden',
-            gap: '1rem',
-            '@media (max-width: 1024px)': {
-              width: '100%',
-              height: '100%',
-            },
+            padding: '2%',
           }}
         >
-          <Typography
-            variant="h5"
-            className={cinzel.className}
+          PERSONAJES
+        </Typography>
+        <Box
+          sx={[
+            FLEX_ROW_CENTER,
+            {
+              gap: '1rem',
+              width: '100%',
+              height: '10%',
+            },
+          ]}
+        >
+          <Box
             sx={{
-              cursor: 'pointer',
-              padding: 4,
-              fontFamily: 'cinzel',
-              fontWeight: 'bold',
-              color: 'white',
-              textAlign: 'center',
+              height: '250%',
+              transform: 'scaleX(-1)',
+              imageRendering: 'pixelated',
+              transition: '.5s all',
+              opacity: characterSelected === CHARACTERS.VILH ? 1 : 0,
+              zIndex: -1,
+              '@media (max-width: 500px)': {
+                display: 'none',
+              },
             }}
-          >
-            PERSONAJES
-          </Typography>
-          <Box sx={[FLEX_ROW_CENTER, { gap: '1rem' }]}>
-            <Box>
-              <Box
-                sx={{
-                  width: 72,
-                  filter:
-                    characterSelected === CHARACTERS.VILH
-                      ? 'brightness(1)'
-                      : 'brightness(.4)',
-                  transition: 'all .5s',
-                  '&:hover': {
-                    filter: 'brightness(1)',
-                    cursor: 'pointer',
-                  },
-                  '@media (max-width: 1024px)': {
-                    width: '60px',
-                  },
-                }}
-                component={'img'}
-                onClick={handleChangeToVilh}
-                src={VANAHEIM_ICON}
-                draggable={false}
-                alt="VanaheimIcon"
-              />
-              <Typography
-                className={cinzel.className}
-                sx={{
+            component={'img'}
+            src={VILH_SPRITE.src}
+            alt="VilhSprite"
+            draggable={false}
+          />
+          <Box>
+            <Box
+              sx={{
+                width: 72,
+                filter:
+                  characterSelected === CHARACTERS.VILH
+                    ? 'brightness(1)'
+                    : 'brightness(.4)',
+                // transition: 'all .5s',
+                '&:hover': {
+                  filter: 'brightness(1)',
                   cursor: 'pointer',
-                  padding: 1,
-                  fontFamily: 'cinzel',
-                  fontWeight: 'bold',
-                  textAlign: 'center',
-                  color:
-                    characterSelected === CHARACTERS.VILH ? 'white' : 'gray',
-                }}
-              >
-                VILH
-              </Typography>
-            </Box>
-            <Box>
-              <Box
-                sx={{
-                  width: 72,
-                  filter:
-                    characterSelected === CHARACTERS.YVES
-                      ? 'brightness(1)'
-                      : 'brightness(.4)',
-                  transition: 'all .5s',
-                  '&:hover': {
-                    filter: 'brightness(1)',
-                    cursor: 'pointer',
-                  },
-                  '@media (max-width: 1024px)': {
-                    width: '60px',
-                  },
-                }}
-                onClick={handleChangeToYves}
-                component={'img'}
-                src={HELHEIM_ICON}
-                draggable={false}
-                alt="HelheimIcon"
-              />
-              <Typography
-                className={cinzel.className}
-                sx={{
-                  cursor: 'pointer',
-                  padding: 1,
-                  fontFamily: 'cinzel',
-                  fontWeight: 'bold',
-                  color:
-                    characterSelected === CHARACTERS.YVES ? 'white' : 'gray',
-                  textAlign: 'center',
-                }}
-              >
-                YVES
-              </Typography>
-            </Box>
+                },
+                '@media (max-width: 1024px)': {
+                  width: '60px',
+                },
+              }}
+              component={'img'}
+              onClick={handleChangeToVilh}
+              src={VANAHEIM_ICON}
+              draggable={false}
+              alt="VanaheimIcon"
+            />
+            <Typography
+              className={cinzel.className}
+              sx={{
+                cursor: 'pointer',
+                padding: 1,
+                fontFamily: 'cinzel',
+                fontWeight: 'bold',
+                textAlign: 'center',
+                color: characterSelected === CHARACTERS.VILH ? 'white' : 'gray',
+              }}
+            >
+              VILH
+            </Typography>
           </Box>
+          <Box>
+            <Box
+              sx={{
+                width: 72,
+                filter:
+                  characterSelected === CHARACTERS.YVES
+                    ? 'brightness(1)'
+                    : 'brightness(.4)',
+                transition: 'all .5s',
+                '&:hover': {
+                  filter: 'brightness(1)',
+                  cursor: 'pointer',
+                },
+                '@media (max-width: 1024px)': {
+                  width: '60px',
+                },
+              }}
+              onClick={handleChangeToYves}
+              component={'img'}
+              src={HELHEIM_ICON}
+              draggable={false}
+              alt="HelheimIcon"
+            />
+            <Typography
+              className={cinzel.className}
+              sx={{
+                cursor: 'pointer',
+                padding: 1,
+                fontFamily: 'cinzel',
+                fontWeight: 'bold',
+                color: characterSelected === CHARACTERS.YVES ? 'white' : 'gray',
+                textAlign: 'center',
+              }}
+            >
+              YVES
+            </Typography>
+          </Box>
+          <Box
+            sx={{
+              height: '250%',
+              imageRendering: 'pixelated',
+              transition: '.5s all',
+              opacity: characterSelected === CHARACTERS.YVES ? 1 : 0,
+              overflow: 'hidden',
+              zIndex: -1,
+              '@media (max-width: 500px)': {
+                display: 'none',
+              },
+            }}
+            component={'img'}
+            src={YVES_SPRITE.src}
+            alt="YvesSprite"
+            draggable={false}
+          />
+        </Box>
+        <Box sx={[FLEX_COLUMN_CENTER, { gap: '1rem' }]}>
           <Typography
             className={cinzel.className}
             sx={{
               cursor: 'pointer',
-              width: '60%',
+              width: '50%',
               padding: 1,
               fontFamily: 'cinzel',
               fontWeight: 'bold',
               color: 'white',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
               textAlign: 'center',
+              pointerEvents: 'none',
               textJustify: 'distribute',
               '@media (max-width: 640px)': {
                 fontSize: '13px',
@@ -472,55 +501,6 @@ export default function Home(): JSX.Element {
             loop
             muted
             className={`w-[70%] sm:w-3/4 xl:w-[40%] border ${characterSelected === CHARACTERS.VILH ? 'border-green-500' : 'border-teal_600'} rounded-lg opacity-80`}
-          />
-          <Box
-            sx={{
-              height: '60%',
-              left: '20%',
-              transform: 'scaleX(-1)',
-              imageRendering: 'pixelated',
-              transition: '.5s all',
-              position: 'absolute',
-              opacity: characterSelected === CHARACTERS.VILH ? 1 : 0,
-              zIndex: -1,
-              '@media (max-width: 1024px)': {
-                height: '50%',
-                left: '0%',
-              },
-              '@media (max-width: 640px)': {
-                height: '25%',
-                left: '0%',
-                top: '210%',
-              },
-            }}
-            component={'img'}
-            src={VILH_SPRITE.src}
-            alt="VilhSprite"
-          />
-          <Box
-            sx={{
-              height: '60%',
-              left: '60%',
-              imageRendering: 'pixelated',
-              transition: '.5s all',
-              position: 'absolute',
-              opacity: characterSelected === CHARACTERS.YVES ? 1 : 0,
-              overflow: 'hidden',
-              zIndex: -1,
-
-              '@media (max-width: 1024px)': {
-                height: '50%',
-                left: '65%',
-              },
-              '@media (max-width: 640px)': {
-                height: '25%',
-                left: '63%',
-                top: '210%',
-              },
-            }}
-            component={'img'}
-            src={YVES_SPRITE.src}
-            alt="YvesSprite"
           />
         </Box>
       </Box>
