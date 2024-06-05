@@ -11,8 +11,6 @@ import { useRouter, usePathname } from 'next/navigation';
 import TemporaryDrawer from '@/components/Drawer';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import { handleLogout } from '@auth0/nextjs-auth0';
-import { MenuItem, Select } from '@mui/material';
-
 export default function Layout({
   children,
 }: Readonly<{ children: React.ReactNode }>): JSX.Element {
