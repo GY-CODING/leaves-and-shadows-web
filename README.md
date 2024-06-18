@@ -1,12 +1,13 @@
-<h1><span style="color: lightgreen;">Leaves</span> and <span style="color: teal;">Shadows</span></h1>
-<br>
+# Leaves & Shadows Website
 
 [![developer](https://img.shields.io/badge/developed-GYCoding-B833FF?style=for-the-badge)](https://gycoding.com)
 [![website](https://img.shields.io/badge/website-link-silver?style=for-the-badge)](https://leavesandshadows.com/)
 
+<br>
+
 ## Introduction
 
-This is the official **Fall of the Gods: Leaves and Shadows Website**, which allows everyone to check their game achievements and look for different information about every player in the universe of Fall of the Gods.
+This is the official **Fall of the Gods: Leaves & Shadows Website**, which allows everyone to check their game achievements and look for different information about every player in the universe of Fall of the Gods.
 
 <br>
 
