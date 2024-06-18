@@ -26,4 +26,4 @@ This web application uses **NextJS** with **TypeScript**, **Auth0** and **Materi
 
 <br>
 
-<pre>GYCODING 2024</pre>
+<pre align="center">GYCODING 2024</pre>
