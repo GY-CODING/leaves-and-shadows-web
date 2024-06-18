@@ -21,6 +21,8 @@ This web application uses **NextJS** with **TypeScript**, **Auth0** and **Materi
 
 <br>
 
+## Creators
+
 | Product Owner |
 | :---: |
 | <img src="https://github.com/gy-gfigueras.png?size=115" width=115> <br> [![gfigueras](https://img.shields.io/badge/gfigueras-B833FF?style=for-the-badge)](https://github.com/gy-gfigueras) |
