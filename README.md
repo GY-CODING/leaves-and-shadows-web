@@ -1,26 +1,29 @@
 <h1><span style="color: lightgreen;">Leaves</span> and <span style="color: teal;">Shadows</span></h1>
 <br>
 
-<center>
+[![developer](https://img.shields.io/badge/developed-GYCoding-B833FF?style=for-the-badge)](https://gycoding.com)
+[![website](https://img.shields.io/badge/website-link-silver?style=for-the-badge)](https://leavesandshadows.com/)
 
-[![developer](https://img.shields.io/badge/developed-GYCoding-purple?style=for-the-badge)](https://gycoding.com)
+## Introduction
 
-# Introduction
-
-This is the official **Fall of the Gods Leaves and Shadows Web**
-
-<br>
-
-# How it was made
-
-This web application uses **NextJS** with **Typescript**, **auth0** and **MaterialUI** for components.
-
-[![developer](https://img.shields.io/badge/Typescript-v5.4.5-blue?style=for-the-badge)](https://www.typescriptlang.org/)
-[![developer](https://img.shields.io/badge/MaterialUI-STYLES-purple?style=for-the-badge)](https://www.typescriptlang.org/)
-[![developer](https://img.shields.io/badge/NextJS-v14-green?style=for-the-badge)](https://www.typescriptlang.org/)
+This is the official **Fall of the Gods: Leaves and Shadows Website**, which allows everyone to check their game achievements and look for different information about every player in the universe of Fall of the Gods.
 
 <br>
 
-<pre>Made by GYCODING</pre>
+## How it was made
 
-</center>
+![NextJS](https://img.shields.io/badge/Next%20JS-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![MaterialUI](https://img.shields.io/badge/Material%20UI-007FFF?style=for-the-badge&logo=mui&logoColor=white)
+
+This web application uses **NextJS** with **TypeScript**, **Auth0** and **MaterialUI** for components.
+
+<br>
+
+| Product Owner |
+| :---: |
+| <img src="https://github.com/gy-gfigueras.png?size=115" width=115> <br> [![gfigueras](https://img.shields.io/badge/gfigueras-B833FF?style=for-the-badge)](https://github.com/gy-gfigueras) |
+
+<br>
+
+<pre>GYCODING 2024</pre>
